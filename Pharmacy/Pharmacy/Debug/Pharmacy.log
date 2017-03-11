@@ -1,0 +1,33 @@
+﻿  UI.c
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(54): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(56): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(2254): note: see declaration of 'sscanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(73): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(75): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(77): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(79): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(98): warning C4013: 'deleteMedicine' undefined; assuming extern returning int
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(95): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(89): warning C4101: 'concentration': unreferenced local variable
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(91): warning C4101: 'price': unreferenced local variable
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(90): warning C4101: 'quantity': unreferenced local variable
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(120): warning C4013: 'updateMedicine' undefined; assuming extern returning int
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(111): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(113): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(115): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(117): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(163): warning C4013: 'strcmp' undefined; assuming extern returning int
+e:\programe\visual studio\programe\pharmacy\pharmacy\ui.c(147): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+  Pharmacy.vcxproj -> E:\Programe\Visual Studio\Programe\Pharmacy\Debug\Pharmacy.exe
+  Pharmacy.vcxproj -> E:\Programe\Visual Studio\Programe\Pharmacy\Debug\Pharmacy.pdb (Partial PDB)
