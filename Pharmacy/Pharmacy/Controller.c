@@ -55,5 +55,3 @@ MedicineRepo filterByName(Controller *c, char name[])
 	}
 	return result;
 }
-
-/*MedicineRepo sortAlphabeticallyController(Controller *c)*/

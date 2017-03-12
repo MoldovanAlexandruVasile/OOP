@@ -1,3 +1,15 @@
+/*
+
+
+									=================================
+									| Created on: 08.03.2017        |
+									| Edited on: 10.03.2017         |
+									| By: Moldovan Alexandru-Vasile |
+									=================================
+
+
+*/
+
 #include "MedicineRepository.h"
 #include "UI.h"
 #include <crtdbg.h>

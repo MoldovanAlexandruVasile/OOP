@@ -77,7 +77,7 @@ void initMedicineRepoForTests(MedicineRepo* v)
 	add(v, m);
 }
 
-void testAdd()
+void test()
 {
 	Medicine m = createMedicine("Paracetamol", 157, 45, 200);
 	
@@ -96,5 +96,5 @@ void testAdd()
 
 void testsMedicineRepo()
 {
-	testAdd();
+	test();
 }
