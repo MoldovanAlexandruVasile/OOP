@@ -51,11 +51,13 @@ int update(MedicineRepo *v, Medicine m);
 
 
 /*
-We get the length of the repo
+Returns the length of the repo.
 */
 int getLength(MedicineRepo *v);
 
-
+/*
+Returns the medicine from the position 'pos'.
+*/
 Medicine *getMedicineOnPos(MedicineRepo *v, int pos);
 
 

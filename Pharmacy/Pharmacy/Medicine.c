@@ -35,5 +35,5 @@ double getPrice(Medicine *m)
 
 void toString(Medicine m, char str[])
 {
-	sprintf(str, "         Medcine: %s         Concentration: %.2lf        Quantity: %.2lf         Price: %.2lf", m.name, m.concentration, m.quantity, m.price);
+	sprintf(str, "       Medcine: %-15s         Concentration: %-7.2lf        Quantity: %-7.2lf         Price: %-7.2lf", m.name, m.concentration, m.quantity, m.price);
 }

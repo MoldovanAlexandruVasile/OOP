@@ -22,6 +22,7 @@ Prints out the menu.
 	printf("    6. Medicines with low suply. (NOT IMPLEMENTED)\n");
 	printf("    7. Undo.(NOT IMPLEMENTED)\n");
 	printf("    8. Redo.(NOT IMPLEMENTED)\n");
+	printf("    9. Print avaible medicines with a given name, sorted by concentration.\n");
 	printf("    0. Exit.\n \n");
 }
 
@@ -34,14 +35,14 @@ Output 1 - if it is valid
 	   0 - it it's not valid
 */
 {
-	if (command >= 0 && command <= 8)
+	if (command >= 0 && command <= 9)
 	{
 		return 1;
 	}
 	return 0;
 }
 
-int readIntegerNumber(const char* message)
+int readIntegerNumber()
 {
 	char s[16];
 	int result = 0;
@@ -50,7 +51,7 @@ int readIntegerNumber(const char* message)
 
 	while (flag == 0)
 	{
-		printf(message);
+		printf("\n    Your command: ");
 		scanf("%s", s);
 
 		r = sscanf(s, "%d", &result);
@@ -140,6 +141,25 @@ void listAllMedicines(UI *ui)
 }
 
 
+void sortAlphabetically(MedicineRepo *v)
+{
+	for (int i = 0; i < getLength(v) - 1; i++)
+	{
+		Medicine *m1 = getMedicineOnPos(v, i);
+		for (int j = i + 1; j < getLength(v); j++)
+		{
+			Medicine *m2 = getMedicineOnPos(v, j);
+			if (strcmp(m1->name, m2->name)>0)
+			{
+				Medicine aux = createMedicine("", 0, 0, 0);
+				aux = *m1;
+				*m1 = *m2;
+				*m2 = aux;
+			}
+		}
+	}
+}
+
 void listMedicineWithName(UI *ui)
 {
 	char name[50];
@@ -153,22 +173,52 @@ void listMedicineWithName(UI *ui)
 		printf("    There are no medicines with that input.");
 	}
 	else
-	{
-		for (int i = 0; i < getLength(&result) - 1; i++)
+	{	
+		sortAlphabetically(&result);
+		printf("\n");
+		for (int i = 0; i < length; i++)
 		{
-			Medicine *m1 = getMedicineOnPos(&result, i);
-			for (int j = i + 1; j < getLength(&result); j++)
+			char str[200];
+			toString(*getMedicineOnPos(&result, i), str);
+			printf("%s\n", str);
+		}
+	}
+}
+
+void sortByConcentration(MedicineRepo *v)
+{
+	for (int i = 0; i < getLength(v) - 1; i++)
+	{
+		Medicine *m1 = getMedicineOnPos(v, i);
+		for (int j = i + 1; j < getLength(v); j++)
+		{
+			Medicine *m2 = getMedicineOnPos(v, j);
+			if (m1->concentration > m2->concentration && m1->quantity > 0 && m2->quantity >0)
 			{
-				Medicine *m2 = getMedicineOnPos(&result, j);
-				if (strcmp(m1->name, m2->name)>0)
-				{
-					Medicine aux = createMedicine("", 0, 0, 0);
-					aux = *m1;
-					*m1 = *m2;
-					*m2 = aux;
-				}
+				Medicine aux = createMedicine("", 0, 0, 0);
+				aux = *m1;
+				*m1 = *m2;
+				*m2 = aux;
 			}
 		}
+	}
+}
+
+void listMedicineByConcentration(UI *ui)
+{
+	char name[50];
+	printf("        Name: ");
+	scanf("%49s", name);
+
+	MedicineRepo result = filterByName(ui->ctrl, name);
+	int length = getLength(&result);
+	if (length == 0)
+	{
+		printf("\n    There are no medicines with that input.");
+	}
+	else
+	{
+		sortByConcentration(&result);
 		printf("\n");
 		for (int i = 0; i < length; i++)
 		{
@@ -185,11 +235,11 @@ void startUI(UI* ui)
 	while (command != 0)
 	{
 		printMenu();
-		command = readIntegerNumber("    Your command: ");
+		command = readIntegerNumber();
 		while (validCommand(command) == 0)
 		{
 			printf("\n    Invalid command !\n");
-			command = readIntegerNumber("    Your command: ");
+			command = readIntegerNumber();
 		}
 		if (command == 0)
 			break;
@@ -252,6 +302,12 @@ void startUI(UI* ui)
 		else if (command == 8)
 		{
 			break;
+		}
+		else if (command == 9)
+		{
+			printf("\n");
+			listMedicineByConcentration(ui);
+			printf("\n");
 		}
 	}
 }
