@@ -20,54 +20,54 @@ void destroyUndoController(undoController* undoCtrl)
 	free(undoCtrl);
 }
 
-void newOperation(undoController* undoctrl)
+void newOperation(undoController* undoCtrl)
 {
-	for (int i = undoctrl->index + 1; i < undoctrl->n; i++)
-		destroyRepo(undoctrl->repoList[i]);
+	for (int i = undoCtrl->index + 1; i < undoCtrl->n; i++)
+		destroyRepo(undoCtrl->repoList[i]);
 
-	undoctrl->n = undoctrl->index + 2;
-	undoctrl->index = undoctrl->index + 1;
+	undoCtrl->n = undoCtrl->index + 2;
+	undoCtrl->index = undoCtrl->index + 1;
 }
 
-void addList(undoController* undoctrl, MedicineRepo* repo)
+void addList(undoController* undoCtrl, MedicineRepo* repo)
 {
 	Medicine* med;
 
-	undoctrl->repoList[undoctrl->index] = createRepo();
+	undoCtrl->repoList[undoCtrl->index] = createRepo();
 
 	for (int i = 0; i < repo->length; i++)
 	{
 		med = createMedicine(repo->medicines[i]->name, repo->medicines[i]->concentration, repo->medicines[i]->quantity\
 			, repo->medicines[i]->price);
 
-		add(undoctrl->repoList[undoctrl->index], med);
+		add(undoCtrl->repoList[undoCtrl->index], med);
 	}
 
 }
 
-int checkUndo(undoController* c)
+int checkUndo(undoController* undoCtrl)
 {
-	return c->index > 0;
+	return undoCtrl->index > 0;
 }
 
-int checkRedo(undoController* c)
+int checkRedo(undoController* undoCtrl)
 {
-	return c->index + 1 < c->n;
+	return undoCtrl->index + 1 < undoCtrl->n;
 }
 
-int undo(undoController* c, MedicineRepo* repo)
+int undo(undoController* undoCtrl, MedicineRepo* repo)
 {
-	if (checkUndo(c))
+	if (checkUndo(undoCtrl))
 	{
 
 		Medicine* med;
 		destroyRepo(repo);
 		repo = createRepo();
-		c->index = c->index - 1;
-		for (int i = 0; i < c->repoList[c->index]->length; i++)
+		undoCtrl->index = undoCtrl->index - 1;
+		for (int i = 0; i < undoCtrl->repoList[undoCtrl->index]->length; i++)
 		{
-			med = createMedicine(c->repoList[c->index]->medicines[i]->name, c->repoList[c->index]->medicines[i]->concentration, \
-				c->repoList[c->index]->medicines[i]->quantity, c->repoList[c->index]->medicines[i]->price);
+			med = createMedicine(undoCtrl->repoList[undoCtrl->index]->medicines[i]->name, undoCtrl->repoList[undoCtrl->index]->medicines[i]->concentration, \
+				undoCtrl->repoList[undoCtrl->index]->medicines[i]->quantity, undoCtrl->repoList[undoCtrl->index]->medicines[i]->price);
 
 			add(repo, med);
 		}
@@ -77,19 +77,19 @@ int undo(undoController* c, MedicineRepo* repo)
 	return repo;
 }
 
-int redo(undoController* c, MedicineRepo* repo)
+int redo(undoController* undoCtrl, MedicineRepo* repo)
 {
-	if (checkRedo(c))
+	if (checkRedo(undoCtrl))
 	{
 
 		Medicine* med;
 		destroyRepo(repo);
 		repo = createRepo();
-		c->index = c->index + 1;
-		for (int i = 0; i < c->repoList[c->index]->length; i++)
+		undoCtrl->index = undoCtrl->index + 1;
+		for (int i = 0; i < undoCtrl->repoList[undoCtrl->index]->length; i++)
 		{
-			med = createMedicine(c->repoList[c->index]->medicines[i]->name, c->repoList[c->index]->medicines[i]->concentration, \
-				c->repoList[c->index]->medicines[i]->quantity, c->repoList[c->index]->medicines[i]->price);
+			med = createMedicine(undoCtrl->repoList[undoCtrl->index]->medicines[i]->name, undoCtrl->repoList[undoCtrl->index]->medicines[i]->concentration, \
+				undoCtrl->repoList[undoCtrl->index]->medicines[i]->quantity, undoCtrl->repoList[undoCtrl->index]->medicines[i]->price);
 
 			add(repo, med);
 		}
