@@ -129,6 +129,7 @@ MedicineRepo* copyRepo(MedicineRepo* v)
 }
 
 void initMedicineRepoForTests(MedicineRepo *v)
+//Initiate the repo for test
 {
 	Medicine *m = createMedicine("Algocalmin", 100, 20, 50);
 	add(v, m);
@@ -141,15 +142,22 @@ void test()
 	assert(getLength(v) == 1);
 
 	Medicine *m = createMedicine("Paracetamol", 157, 45, 200);
+	//We add the new medicine.
 	assert(add(v, m) == 1);
+	//We see if it has been added.
 	assert(getLength(v) == 2);
+	//We try again too add it, but it does already exists, so it will update the quantity.
 	assert(add(v, m) == 0);
+	//We delete the medicine.
 	assert(deleteM(v, m) == 1);
+	//We check if the medicine was deleted.
 	assert(getLength(v) == 1);
+	//We destroy the repo.
 	destroyRepo(v);
 }
 
 void testsMedicineRepo()
+//We run the test
 {
 	test();
 }

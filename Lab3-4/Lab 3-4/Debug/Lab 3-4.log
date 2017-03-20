@@ -1,4 +1,8 @@
-﻿  UndoController.c
+﻿  main.c
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\main.c(45): warning C4013: 'newOperation' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\main.c(46): warning C4013: 'addList' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\main.c(50): warning C4020: 'startUI': too many actual parameters
+  UndoController.c
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(8): warning C4047: '=': 'MedicineRepo **' differs in levels of indirection from 'MedicineRepo *'
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(59): warning C4029: declared formal parameter list different from definition
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(75): warning C4047: 'return': 'int' differs in levels of indirection from 'MedicineRepo *'
@@ -6,5 +10,50 @@ e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(77): warning
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(81): warning C4029: declared formal parameter list different from definition
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(96): warning C4047: 'return': 'int' differs in levels of indirection from 'MedicineRepo *'
 e:\programe\visual studio\programe\lab 3-4\lab 3-4\undocontroller.c(98): warning C4047: 'return': 'int' differs in levels of indirection from 'MedicineRepo *'
+  UI.c
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(7): warning C4013: 'malloc' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(16): warning C4013: 'free' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(70): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(72): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(2254): note: see declaration of 'sscanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(86): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(88): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(90): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(92): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(102): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(116): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(118): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(120): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(122): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(150): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(175): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(200): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(223): warning C4029: declared formal parameter list different from definition
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(245): warning C4013: 'newOperation' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(246): warning C4013: 'addList' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(269): warning C4020: 'deleteMedicineUI': too many actual parameters
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(282): warning C4020: 'updateMedicineUI': too many actual parameters
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(302): warning C4020: 'undo': too many actual parameters
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(302): warning C4047: '=': 'MedicineRepo *' differs in levels of indirection from 'int'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(313): warning C4020: 'redo': too many actual parameters
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\ui.c(313): warning C4047: '=': 'MedicineRepo *' differs in levels of indirection from 'int'
+  MedicineRepository.c
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\medicinerepository.c(8): warning C4013: 'malloc' undefined; assuming extern returning int
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\medicinerepository.c(9): warning C4047: '=': 'Medicine **' differs in levels of indirection from 'Medicine *'
+e:\programe\visual studio\programe\lab 3-4\lab 3-4\medicinerepository.c(20): warning C4013: 'free' undefined; assuming extern returning int
+  Generating Code...
   Lab 3-4.vcxproj -> E:\Programe\Visual Studio\Programe\Lab 3-4\Debug\Lab 3-4.exe
   Lab 3-4.vcxproj -> E:\Programe\Visual Studio\Programe\Lab 3-4\Debug\Lab 3-4.pdb (Partial PDB)

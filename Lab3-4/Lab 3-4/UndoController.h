@@ -38,8 +38,7 @@ int checkRedo(undoController* undoCtrl);
 /*
 The function makes the undo operation
 Input:  undoCtrl - pointer of the controller
-Output: 1 - If the undo operation has been made
-		0 - If the undo operation hasn't been made
+Output: The repository
 */
 int undo(undoController* undoCtrl);
 
@@ -47,7 +46,6 @@ int undo(undoController* undoCtrl);
 /*
 The function makes the redo operation
 Input:  undoCtrl - pointer of the controller
-Output: 1 - If the redo operation has been made
-		0 - If the redo operation hasn't been made
+Output: The repository
 */
 int redo(undoController* undoCtrl);
