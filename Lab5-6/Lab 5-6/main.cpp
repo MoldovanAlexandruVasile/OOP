@@ -1,3 +1,14 @@
+/*
+											=================================
+											| Created on: 24.03.2017        |
+											| Edited on: 28.03.2017         |
+											| By: Moldovan Alexandru-Vasile |
+											=================================
+*/
+
+
+
+
 #include "Tutorial.h"
 #include "UI.h"
 #include <Windows.h>

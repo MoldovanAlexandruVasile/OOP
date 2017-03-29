@@ -1,6 +1,5 @@
 #include "DynamicVector.h"
 
-
 DynamicVector::DynamicVector(int capacity)
 {
 	this->size = 0;
@@ -20,34 +19,6 @@ DynamicVector::DynamicVector(const DynamicVector& v)
 DynamicVector::~DynamicVector()
 {
 	delete[] this->elems;
-}
-
-DynamicVector& DynamicVector::operator=(const DynamicVector& v)
-{
-	if (this == &v)
-		return *this;
-
-	this->size = v.size;
-	this->capacity = v.capacity;
-
-	delete[] this->elems;
-	this->elems = new TElement[this->capacity];
-	for (int i = 0; i < this->size; i++)
-		this->elems[i] = v.elems[i];
-
-	return *this;
-}
-
-int DynamicVector::add(const TElement& e)
-{
-	for (int i = 0; i < this->size; i++)
-		if (this->elems[i].presenter == e.getPresenter() && this->elems[i].title == e.getTitle())
-			return 0;
-	if (this->size == this->capacity)
-		this->resize();
-	this->elems[this->size] = e;
-	this->size++;
-	return 1;
 }
 
 int DynamicVector::testExist(const TElement& e)
@@ -103,4 +74,10 @@ TElement* DynamicVector::getAllElems() const
 int DynamicVector::getSize() const
 {
 	return this->size;
+}
+
+DynamicVector DynamicVector::operator+(const TElement& e)
+{
+	this->add(e);
+	return *this;
 }

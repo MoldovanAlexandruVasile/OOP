@@ -9,14 +9,18 @@ private:
 public:
 	UI(const Controller& c) : ctrl(c) {}
 
+	UI();
+
 	void run();
 
 private:
 	static void printMenu();
-	static void printRepositoryMenu();
+	static void printAdminMenu();
+	static void printUserMenu();
 
 	int addTutorialToRepo();
 	int deleteTutorialFromRepo();
 	int updateTutorialFromRepo();
 	void displayAllTutorialsRepo();
+	void displayTutorialsByPresenter(Tutorial tut);
 };

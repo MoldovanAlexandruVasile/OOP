@@ -5,20 +5,32 @@ using namespace std;
 
 void UI::printMenu()
 {
-	cout << endl;
+	cout << "\n===================================================\n" << endl;
 	cout << "\t\t~MENU~" <<endl;
 	cout << "     1. Manage tutorials repository." << endl;
 	cout << "     2. Manage playlist." << endl;
 	cout << "     0. Exit." << endl;
 }
 
-void UI::printRepositoryMenu()
+void UI::printAdminMenu()
 {
-	cout << "\n\t     ~Manage tutorials repository~\n" << endl;
+	cout << "\n   ======================================================\n" << endl;
+	cout << "\n\t\t     ~Manage tutorials repository~\n" << endl;
 	cout << "\t\t 1. Add tutorial." << endl;
 	cout << "\t\t 2. Delete tutorial." << endl;
 	cout << "\t\t 3. Update tutorial." << endl;
 	cout << "\t\t 4. Display all." << endl;
+	cout << "\t\t 0. Back." << endl;
+}
+
+void UI::printUserMenu()
+{
+	cout << "\n   =============================================================\n" << endl;
+	cout << "\n\t\t     ~User options~\n" << endl;
+	cout << "\t\t 1. See existing tutorials from database with a given presenter." << endl;
+	cout << "\t\t 2. See your tutorial list." << endl;
+	cout << "\t\t 3. Add a tutorial to your list.." << endl;
+	cout << "\t\t 4. Delete a tutorial from your list." << endl;
 	cout << "\t\t 0. Back." << endl;
 }
 
@@ -30,7 +42,7 @@ int UI::addTutorialToRepo()
 	cout << "\tEnter the title: ";
 	std::string title;
 	getline(cin, title);
-	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") != 0)
+	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") != -1)
 		return 0;
 	int likes;
 	cout << "\tLikes: ";
@@ -71,7 +83,7 @@ int UI::updateTutorialFromRepo()
 	cout << "\tEnter the title: ";
 	std::string title;
 	getline(cin, title);
-	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") == 0)
+	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") == -1)
 		return 0;
 	int likes;
 	cout << "\tLikes: ";
@@ -94,13 +106,38 @@ int UI::updateTutorialFromRepo()
 
 void UI::displayAllTutorialsRepo()
 {
-	DynamicVector v = this->ctrl.getRepo().getTutorials();
+	DynamicVector<Tutorial> v = this->ctrl.getRepo().getTutorials();
 	Tutorial* tutorials = v.getAllElems();
 	if (tutorials == NULL)
 		return;
 	if (v.getSize() == 0)
 	{
-		cout << "\tThere are no tutorials in the repository.\n" << endl;
+		cout << "\n\tThere are no tutorials in the repository.\n" << endl;
+		return;
+	}
+	cout << "\n==========================================================================\n" << endl;
+	for (int i = 0; i < v.getSize(); i++)
+	{
+		Tutorial t = tutorials[i];
+		Duration d = t.getDuration();
+		cout << "  Tutorial by: " << t.getPresenter() << endl;
+		cout << "  Title: " << t.getTitle() << endl;
+		cout << "  Number of likes: " << t.getLikes() << endl;
+		cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << endl;
+		cout << "\n==========================================================================\n" << endl;
+	}
+}
+
+
+void UI::displayTutorialsByPresenter(Tutorial tut)
+{
+	DynamicVector<Tutorial> v = this->ctrl.getRepo().getTutorials();
+	Tutorial* tutorials = v.getAllElems();
+	if (tutorials == NULL)
+		return;
+	if (v.getSize() == 0)
+	{
+		cout << "\n\tThere are no tutorials in the repository.\n" << endl;
 		return;
 	}
 	cout << "\n==========================================================================\n" << endl;
@@ -133,14 +170,14 @@ void UI::run()
 		{
 			while (true)
 			{
-				UI::printRepositoryMenu();
-				int commandRepo{ 0 };
+				UI::printAdminMenu();
+				int commandAdminRepo{ 0 };
 				cout << "\n\t Your command: ";
-				cin >> commandRepo;
+				cin >> commandAdminRepo;
 				cin.ignore();
-				if (commandRepo == 0)
+				if (commandAdminRepo == 0)
 					break;
-				switch (commandRepo)
+				switch (commandAdminRepo)
 				{
 				case 1:
 				{
@@ -171,6 +208,33 @@ void UI::run()
 				}
 			}
 		}
-		else cout << "Not implemented yet !";
+		else
+		{
+			while (true)
+			{
+				UI::printUserMenu();
+				int commandUserRepo{ 0 };
+				cout << "\n\t Your command: ";
+				cin >> commandUserRepo;
+				cin.ignore();
+				if (commandUserRepo == 0)
+					break;
+				switch (commandUserRepo)
+				{
+				case 1:
+				{
+					cout << "\n\tEnter the presenter: ";
+					std::string presenter;
+					getline(cin, presenter);
+					if (this->ctrl.testExistFromRepositoryByPresenter(presenter, "", 0, 0, 0, "") == -1)
+						cout << "\n\t There are no tutorials by " << presenter << " !"<< endl;
+					else
+					{
+						
+					}
+				}
+				}
+			}
+		}
 	}
 }

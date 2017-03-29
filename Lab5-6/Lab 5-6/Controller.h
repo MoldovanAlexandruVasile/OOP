@@ -1,5 +1,5 @@
 #pragma once
-#include "Repository.h"
+#include "AdminRepository.h"
 
 class Controller
 {
@@ -59,5 +59,7 @@ public:
 			pos - If the tutorial exists, his position will be returnes.
 	*/
 	int testExistFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
+
+	int testExistFromRepositoryByPresenter(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
 };
 

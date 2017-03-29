@@ -111,16 +111,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
-    <ClInclude Include="DynamicVector.h" />
-    <ClInclude Include="Repository.h" />
+    <ClInclude Include="AdminVector.h" />
+    <ClInclude Include="AdminRepository.h" />
     <ClInclude Include="Tutorial.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="DynamicVector.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Repository.cpp" />
+    <ClCompile Include="AdminRepository.cpp" />
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
