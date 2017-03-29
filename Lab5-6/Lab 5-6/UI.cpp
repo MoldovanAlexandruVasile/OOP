@@ -166,46 +166,56 @@ void UI::tutorialsByPresenter(Tutorial tut)
 		cout << "\n\tThere are no tutorials in the repository.\n" << endl;
 		return;
 	}
-	for (int i = 0; i < v.getSize(); i++)
+	int newCommand = -1;
+	while (newCommand != 0)
 	{
-		if (tut.getPresenter() == tutorials[i].getPresenter())
+		DynamicVector<Tutorial> v = this->ctrl.getRepo().getTutorials();
+		Tutorial* tutorials = v.getAllElems();
+		for (int i = 0; i < v.getSize(); i++)
 		{
-			Tutorial t = tutorials[i];
-			Duration d = t.getDuration();
-			cout << "\n==========================================================================\n" << endl;
-			cout << "  Tutorial by: " << t.getPresenter() << endl;
-			cout << "  Title: " << t.getTitle() << endl;
-			cout << "  Number of likes: " << t.getLikes() << endl;
-			cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << endl;
-			cout << "\n\t 1. Like tutorial." << endl;
-			cout << "\t 2. Add to watch list." << endl;
-			cout << "\t 3. Watch tutorial." << endl;
-			cout << "\t 0. Do nothing." << endl;
-			int newCommand{ 0 };
-			cout << "\n\t Your command: ";
-			cin >> newCommand;
-			cin.ignore();
-			cout << "\n==========================================================================\n" << endl;
-			switch (newCommand)
+			if (tut.getPresenter() == tutorials[i].getPresenter())
 			{
-			case 1:
-			{
-				this->ctrl.updateTutorialToRepository(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
-				this->ctrl.updateTutorialToPlayList(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
-				break;
+					Tutorial t = tutorials[i];
+					Duration d = t.getDuration();
+					cout << "\n==========================================================================\n" << endl;
+					cout << "  Tutorial by: " << t.getPresenter() << endl;
+					cout << "  Title: " << t.getTitle() << endl;
+					cout << "  Number of likes: " << t.getLikes() << endl;
+					cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << endl;
+					cout << "\n\t 1. Like tutorial." << endl;
+					cout << "\t 2. Add to watch list." << endl;
+					cout << "\t 3. Watch tutorial." << endl;
+					cout << "\t 4. Next." << endl;
+					cout << "\t 0. Exit." << endl;
+					cout << "\n\t Your command: ";
+					newCommand = 0;
+					cin >> newCommand;
+					cin.ignore();
+					cout << "\n==========================================================================\n" << endl;
+					if (newCommand == 0)
+						break;
+					switch (newCommand)
+					{
+					case 1:
+					{
+						this->ctrl.updateTutorialToRepository(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
+						this->ctrl.updateTutorialToPlayList(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
+						break;
+					}
+					case 2:
+					{
+						this->ctrl.addTutorialToPlayList(tutorials[i]);
+						break;
+					}
+					case 3:
+					{
+						//to do browser redirect ///////////////////////////////////////////////////////////////
+						break;
+					}
+					}
+				}
 			}
-			case 2:
-			{
-				this->ctrl.addTutorialToPlayList(tutorials[i]);
-				break;
-			}
-			case 3:
-			{
-				//to do browser redirect ///////////////////////////////////////////////////////////////
-				break;
-			}
-			}
-		}
+		
 	}
 }
 
