@@ -17,7 +17,7 @@
 using namespace std;
 
 
-void test()
+void testRepo()
 {
 	Repository repoForTest{};
 
@@ -45,9 +45,39 @@ void test()
 	assert(repoForTest.getSizeRepo() == 0);
 }
 
+void testPlayList()
+{
+	PlayList repoForTest{};
+
+	//The playlist is empty
+	assert(repoForTest.getSizePlayList() == 0);
+	Tutorial t{ "Linux Tutorial", "Learn Vi Editor Basics in 20 minutes", 418 ,Duration{ 23, 54 }, "https://www.youtube.com/watch?v=S24LN5h_pac" };
+	//We add to to repo the tutorial.
+	repoForTest.addPlayList(t);
+	//Test the length of the repository.
+	assert(repoForTest.getSizePlayList() == 1);
+	//The element does exist already in the playlist.
+	assert(repoForTest.testExistInPlayList(t) != -1);
+	//The length it is the same.
+	assert(repoForTest.getSizePlayList() == 1);
+	//We update t
+	repoForTest.updateTutorialPlayList(t);
+	//Test again the length
+	assert(repoForTest.getSizePlayList() == 1);
+	//We delete the tutorial
+	repoForTest.deletePlayList(t);
+	//The repository is empty
+	assert(repoForTest.getSizePlayList() == 0);
+	//Try to delete it again
+	repoForTest.deletePlayList(t);
+	//The repository is still empty
+	assert(repoForTest.getSizePlayList() == 0);
+}
+
 int main()
 {	
-	test();
+	testRepo();
+	testPlayList();
 
 	Repository repo{};
 

@@ -32,6 +32,8 @@ void UI::printUserMenu()
 	cout << "\t\t 3. Display your tutorial playlist." << endl;
 	cout << "\t\t 4. Add a tutorial to your playlist." << endl;
 	cout << "\t\t 5. Delete a tutorial from your playlist." << endl;
+	cout << "\t\t 6. Play." << endl;
+	cout << "\t\t 7. Play next tutorial." << endl;
 	cout << "\t\t 0. Back." << endl;
 }
 
@@ -101,6 +103,10 @@ int UI::updateTutorialFromRepo()
 	cout << "\tYoutube link: ";
 	std::string link;
 	getline(cin, link);
+
+	Tutorial t{ presenter,title, likes, Duration{ minutes, seconds }, link };
+	if (this->ctrl.testExistFromPlayListC(t) != -1)
+		this->ctrl.updateTutorialToPlayList(presenter, title, likes, minutes, seconds, link);
 
 	return this->ctrl.updateTutorialToRepository(presenter, title, likes, minutes, seconds, link);
 }
@@ -175,46 +181,47 @@ void UI::tutorialsByPresenter(Tutorial tut)
 		{
 			if (tut.getPresenter() == tutorials[i].getPresenter())
 			{
-					Tutorial t = tutorials[i];
-					Duration d = t.getDuration();
-					cout << "\n==========================================================================\n" << endl;
-					cout << "  Tutorial by: " << t.getPresenter() << endl;
-					cout << "  Title: " << t.getTitle() << endl;
-					cout << "  Number of likes: " << t.getLikes() << endl;
-					cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << endl;
-					cout << "\n\t 1. Like tutorial." << endl;
-					cout << "\t 2. Add to watch list." << endl;
-					cout << "\t 3. Watch tutorial." << endl;
-					cout << "\t 4. Next." << endl;
-					cout << "\t 0. Exit." << endl;
-					cout << "\n\t Your command: ";
-					newCommand = 0;
-					cin >> newCommand;
-					cin.ignore();
-					cout << "\n==========================================================================\n" << endl;
-					if (newCommand == 0)
-						break;
-					switch (newCommand)
-					{
-					case 1:
-					{
-						this->ctrl.updateTutorialToRepository(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
-						this->ctrl.updateTutorialToPlayList(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
-						break;
-					}
-					case 2:
+				Tutorial t = tutorials[i];
+				Duration d = t.getDuration();
+				cout << "\n==========================================================================\n" << endl;
+				cout << "  Tutorial by: " << t.getPresenter() << endl;
+				cout << "  Title: " << t.getTitle() << endl;
+				cout << "  Number of likes: " << t.getLikes() << endl;
+				cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << endl;
+				cout << "\n\t 1. Like tutorial." << endl;
+				cout << "\t 2. Add to watch list." << endl;
+				cout << "\t 3. Next." << endl;
+				cout << "\t 0. Exit." << endl;
+				cout << "\n\t Your command: ";
+				newCommand = 0;
+				cin >> newCommand;
+				cin.ignore();
+				cout << "\n==========================================================================\n" << endl;
+				if (newCommand == 0)
+					break;
+				switch (newCommand)
+				{
+				case 1:
+				{
+					this->ctrl.updateTutorialToRepository(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
+					this->ctrl.updateTutorialToPlayList(tutorials[i].getPresenter(), tutorials[i].getTitle(), tutorials[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), tutorials[i].getSource());
+					cout << "\n\t Tutorial liked !\n" << endl;
+					break;
+				}
+				case 2:
+				{
+					if (this->ctrl.testExistFromPlayListC(tutorials[i]) == -1)
 					{
 						this->ctrl.addTutorialToPlayList(tutorials[i]);
-						break;
+						cout << "\n\t The tutorial has been added to your playlist !\n" << endl;
 					}
-					case 3:
-					{
-						//to do browser redirect ///////////////////////////////////////////////////////////////
-						break;
-					}
-					}
+					else
+						cout << "\n\t\t The tutorial does already exists in the playlist !" << endl;
+					break;
+				}
 				}
 			}
+		}
 		
 	}
 }
@@ -356,6 +363,30 @@ void UI::run()
 				case 5:
 				{
 					deleteTutorialToPlayListUI();
+					break;
+				}
+				case 6:
+				{
+					if (this->ctrl.getPlayList().isEmpty())
+					{
+						cout << "\n\t\tNothing to play, the playlist is empty." << endl;
+						continue;
+					}
+					this->ctrl.startPlayList();
+					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
+					cout << "\n\t\tNow playing: " << t.getPresenter() << " - " << t.getTitle() << endl;
+					break;
+				}
+				case 7:
+				{
+					if (this->ctrl.getPlayList().isEmpty())
+					{
+						cout << "\n\t\tNothing to play, the playlist is empty." << endl;
+						continue;
+					}
+					this->ctrl.nextTutorialPlayList();
+					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
+					cout << "\n\t\tNow playing: " << t.getPresenter() << " - " << t.getTitle() << endl;
 					break;
 				}
 				}

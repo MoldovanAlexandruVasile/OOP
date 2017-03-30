@@ -57,5 +57,6 @@ public:
 	//Returns the TutorialRepo.
 	DynamicVector<Tutorial> getTutorials() const { return tutorials; }
 
+	//Returns the tutorial with a given presenter and title.
 	Tutorial findByPresenterAndTitle(const std::string& presenter, const std::string& title);
 };

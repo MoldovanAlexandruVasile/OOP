@@ -54,25 +54,36 @@ Tutorial PlayList::findByPresenterAndTitle(const std::string& presenter, const s
 	return Tutorial{};
 }
 
-//void PlayList::play()
-//{
-//	if (this->tutorials.getSize() == 0)
-//		return;
-//	this->current = 0;
-//	Tutorial currentTutorial = this->getCurrentTutorial();
-//	currentTutorial.play();
-//}
-//
-//void PlayList::next()
-//{
-//	if (this->tutorials.getSize() == 0)
-//		return;
-//	this->current++;
-//	Tutorial currentTutorial = this->getCurrentTutorial();
-//	currentTutorial.play();
-//}
+void PlayList::play()
+{
+	if (this->tutorials.getSize() == 0)
+		return;
+	this->current = 0;
+	Tutorial currentTutorial = this->getCurrentTutorial();
+	currentTutorial.play();
+}
+
+void PlayList::next()
+{
+	if (this->tutorials.getSize() == 0)
+		return;
+	this->current++;
+	Tutorial currentTutorial = this->getCurrentTutorial();
+	currentTutorial.play();
+}
 
 bool PlayList::isEmpty()
 {
 	return this->tutorials.getSize() == 0;
+}
+
+int PlayList::testExistInPlayList(const Tutorial& t)
+{
+	int res = this->tutorials.testExist(t);
+	return res;
+}
+
+int PlayList::getSizePlayList()
+{
+	return this->tutorials.getSize();
 }
