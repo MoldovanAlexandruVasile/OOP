@@ -24,7 +24,7 @@ public:
 	
 	//Plays the first tutorial.
 	void play();
-	
+
 	//Plays the next tutorial.
 	void next();
 

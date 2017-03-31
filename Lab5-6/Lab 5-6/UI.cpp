@@ -1,6 +1,5 @@
 #include "UI.h"
 #include <string>
-
 using namespace std;
 
 void UI::printMenu()
@@ -32,8 +31,8 @@ void UI::printUserMenu()
 	cout << "\t\t 3. Display your tutorial playlist." << endl;
 	cout << "\t\t 4. Add a tutorial to your playlist." << endl;
 	cout << "\t\t 5. Delete a tutorial from your playlist." << endl;
-	cout << "\t\t 6. Play." << endl;
-	cout << "\t\t 7. Play next tutorial." << endl;
+	cout << "\t\t 6. Watch." << endl;
+	cout << "\t\t 7. Watch the next tutorial." << endl;
 	cout << "\t\t 0. Back." << endl;
 }
 
@@ -369,24 +368,24 @@ void UI::run()
 				{
 					if (this->ctrl.getPlayList().isEmpty())
 					{
-						cout << "\n\t\tNothing to play, the playlist is empty." << endl;
+						cout << "\n\t\tNothing to watch, the playlist is empty." << endl;
 						continue;
 					}
 					this->ctrl.startPlayList();
 					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
-					cout << "\n\t\tNow playing: " << t.getPresenter() << " - " << t.getTitle() << endl;
+					cout << "\n\t\tNow watching: " << t.getPresenter() << " - " << t.getTitle() << endl;
 					break;
 				}
 				case 7:
 				{
 					if (this->ctrl.getPlayList().isEmpty())
 					{
-						cout << "\n\t\tNothing to play, the playlist is empty." << endl;
+						cout << "\n\t\tNothing to watch, the playlist is empty." << endl;
 						continue;
 					}
 					this->ctrl.nextTutorialPlayList();
 					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
-					cout << "\n\t\tNow playing: " << t.getPresenter() << " - " << t.getTitle() << endl;
+					cout << "\n\t\tNow watching: " << t.getPresenter() << " - " << t.getTitle() << endl;
 					break;
 				}
 				}
