@@ -5,9 +5,9 @@ using namespace std;
 void UI::printMenu()
 {
 	cout << "\n===================================================\n" << endl;
-	cout << "\t\t~MENU~" <<endl;
-	cout << "     1. Manage tutorials repository." << endl;
-	cout << "     2. Manage playlist." << endl;
+	cout << "\t~MENU~\n" <<endl;
+	cout << "     1. Admin." << endl;
+	cout << "     2. User." << endl;
 	cout << "     0. Exit." << endl;
 }
 
@@ -19,6 +19,7 @@ void UI::printAdminMenu()
 	cout << "\t\t 2. Delete tutorial." << endl;
 	cout << "\t\t 3. Update tutorial." << endl;
 	cout << "\t\t 4. Display all." << endl;
+	cout << "\t\t 5. Display instances." << endl;
 	cout << "\t\t 0. Back." << endl;
 }
 
@@ -314,6 +315,9 @@ void UI::run()
 					this->displayAllTutorialsRepo();
 					break;
 				}
+				case 5:
+					cout << "\n\n \t All instances: " << Tutorial::allInstances << endl;
+					cout << "\t Current instances: " << Tutorial::currentInstances << endl;
 				}
 			}
 		}

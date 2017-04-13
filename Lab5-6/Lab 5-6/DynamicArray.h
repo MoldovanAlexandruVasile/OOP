@@ -10,9 +10,14 @@ private:
 	int capacity;
 
 public:
-	DynamicVector(int capacity = 50);
 
+	//Constructor
+	DynamicVector(int capacity = 10);
+
+	//Creates a copy of the Array
 	DynamicVector(const DynamicVector& v);
+
+	//Destructor
 	~DynamicVector();
 
 	/*
@@ -165,13 +170,11 @@ template<class TElement>
 void DynamicVector<TElement>::resize(double factor)
 {
 	this->capacity *= static_cast<int>(factor);
-
 	TElement* els = new TElement[this->capacity];
 	for (int i = 0; i < this->size; i++)
-		this->elems[i] = els[i];
-
+		els[i] = this->elems[i];
 	delete[] this->elems;
-	elems = els;
+	this->elems = els;
 }
 
 

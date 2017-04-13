@@ -24,6 +24,8 @@ public:
 	int likes;
 	Duration duration;
 	std::string source;
+	static int allInstances;
+	static int currentInstances;
 
 public:
 	Tutorial();
@@ -36,6 +38,13 @@ public:
 	Duration getDuration() const { return duration; }
 	std::string getSource() const { return source; }
 
+	//Opens a tutorial in browser.
 	void play();
+
+	//Destructor
+	~Tutorial();
+
+	//Copy of the tutorial t.
+	Tutorial(const Tutorial& t);
 };
 
