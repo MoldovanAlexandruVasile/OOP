@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>tutorial.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "Tutorial.h"
+#include &lt;Windows.h&gt;
+#include &lt;shellapi.h&gt;
+#include &lt;string&gt;
+
+int Tutorial::currentInstances = 0;
+int Tutorial::allInstances = 0;
+
+<span style = "background-color:#fdd">Tutorial::Tutorial() : title(""), presenter(""), likes(0), duration(Duration()), source("")
+{
+	this-&gt;allInstances++;
+	this-&gt;currentInstances++;
+}</span>
+
+Tutorial::Tutorial(const std::string&amp; presenter, const std::string&amp; title, const int likes, const Duration&amp; duration, const std::string&amp; source)
+<span style = "background-color:#dfd">{
+	this-&gt;presenter = presenter;
+	this-&gt;title = title;
+	this-&gt;likes = likes;
+	this-&gt;duration = duration;
+	this-&gt;source = source;
+	this-&gt;allInstances++;
+	this-&gt;currentInstances++;
+}</span>
+
+Tutorial::~Tutorial()
+<span style = "background-color:#dfd">{
+	this-&gt;currentInstances--;
+}</span>
+
+Tutorial::Tutorial(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	this-&gt;presenter = t.presenter;
+	this-&gt;title = t.title;
+	this-&gt;likes = t.likes;
+	this-&gt;duration = t.duration;
+	this-&gt;source = t.source;
+	this-&gt;allInstances++;
+	this-&gt;currentInstances++;
+}</span>
+
+void Tutorial::play()
+<span style = "background-color:#fdd">{
+	ShellExecuteA(NULL, NULL, "chrome.exe", this-&gt;getSource().c_str(), NULL, SW_SHOWMAXIMIZED);
+}</span>
+
+void Tutorial::print_tutorial()
+<span style = "background-color:#fdd">{
+	Duration d = this-&gt;duration;
+	std::cout &lt;&lt; "  Tutorial by: " &lt;&lt; this-&gt;presenter &lt;&lt; '\n';
+	std::cout &lt;&lt; "  Title: " &lt;&lt; this-&gt;title &lt;&lt; '\n';
+	std::cout &lt;&lt; "  Number of likes: " &lt;&lt; this-&gt;likes &lt;&lt; '\n';
+	std::cout &lt;&lt; "  Duration: " &lt;&lt; d.getMinutes() &lt;&lt; ":" &lt;&lt; d.getSeconds() &lt;&lt; '\n';
+}</span></pre>
+	</body>
+</html>

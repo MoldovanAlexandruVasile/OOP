@@ -1,0 +1,72 @@
+[2017-04-19 12:19:09] [info] Start Program:
+Path:"./x64/Debug/Lab8-9.exe"
+Arguments:
+Working directory: not set.
+Modules: Selected: * Excluded: 
+Sources: Selected: Lab8-9 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Html 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+
+[2017-04-19 12:19:09] [info] Module: E:\Programe\Visual Studio\Programe\Lab8-9\x64\Debug\Lab8-9.exe is selected because it matches selected pattern: *
+[2017-04-19 12:19:11] [info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:11] [warning] Cannot find pdb for C:\Windows\System32\ntdll.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\kernel32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\KernelBase.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\shell32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\shell32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\msvcrt.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\cfgmgr32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\cfgmgr32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\windows.storage.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\windows.storage.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\combase.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\combase.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\ucrtbase.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\ucrtbase.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\rpcrt4.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\rpcrt4.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\bcryptprimitives.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\bcryptprimitives.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\powrprof.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\powrprof.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\advapi32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\advapi32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\sechost.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\sechost.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\shlwapi.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\shlwapi.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\gdi32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\gdi32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\gdi32full.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\gdi32full.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\user32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\user32.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\win32u.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\win32u.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\kernel.appcore.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\kernel.appcore.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\SHCore.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\SHCore.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\profapi.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\profapi.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\vcruntime140d.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\vcruntime140d.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\msvcp140d.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\msvcp140d.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\ucrtbased.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\ucrtbased.dll
+[2017-04-19 12:19:12] [info] Module: C:\Windows\System32\imm32.dll is selected because it matches selected pattern: *
+[2017-04-19 12:19:12] [warning] Cannot find pdb for C:\Windows\System32\imm32.dll
+[2017-04-19 12:19:18] [info] ----------------------------------------------------
+[2017-04-19 12:19:18] [info] Coverage generated in Folder E:\Programe\Visual Studio\Programe\Lab8-9\CoverageReport-2017-04-19-12h19m18s
+[2017-04-19 12:19:18] [info] ----------------------------------------------------

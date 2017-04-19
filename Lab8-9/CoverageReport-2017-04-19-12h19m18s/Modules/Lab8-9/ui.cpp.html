@@ -1,0 +1,403 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "UI.h"
+#include &lt;string&gt;
+using namespace std;
+
+void UI::printMenu()
+<span style = "background-color:#dfd">{
+	cout &lt;&lt; "\n===================================================\n" &lt;&lt; endl;
+	cout &lt;&lt; "\t~MENU~\n" &lt;&lt; endl;
+	cout &lt;&lt; "     1. Admin." &lt;&lt; endl;
+	cout &lt;&lt; "     2. User." &lt;&lt; endl;
+	cout &lt;&lt; "     0. Exit." &lt;&lt; endl;
+}</span>
+
+void UI::printAdminMenu()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n   ======================================================\n" &lt;&lt; endl;
+	cout &lt;&lt; "\n\t\t     ~Manage tutorials repository~\n" &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 1. Add tutorial." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 2. Delete tutorial." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 3. Update tutorial." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 4. Display all." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 5. Display instances." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 0. Back." &lt;&lt; endl;
+}</span>
+
+void UI::printUserMenu()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n   =============================================================\n" &lt;&lt; endl;
+	cout &lt;&lt; "\n\t\t     ~User options~\n" &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 1. Display avaible tutorials from database." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 2. Display existing tutorials from database with a given presenter." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 3. Display your tutorial playlist." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 4. Add a tutorial to your playlist." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 5. Delete a tutorial from your playlist." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 6. Watch." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 7. Watch the next tutorial." &lt;&lt; endl;
+	cout &lt;&lt; "\t\t 0. Back." &lt;&lt; endl;
+}</span>
+
+int UI::addTutorialToRepo()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n\tEnter the presenter: ";
+	std::string presenter;
+	getline(cin, presenter);
+	cout &lt;&lt; "\tEnter the title: ";
+	std::string title;
+	getline(cin, title);
+	if (this-&gt;ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") != -1)
+		return 0;</span>
+	int likes;
+<span style = "background-color:#fdd">	cout &lt;&lt; "\tLikes: ";
+	cin &gt;&gt; likes;
+	cin.ignore();
+	double minutes = 0, seconds = 0;
+	cout &lt;&lt; "\tEnter the duration: " &lt;&lt; endl;
+	cout &lt;&lt; "\t\tMinutes: ";
+	cin &gt;&gt; minutes;
+	cin.ignore();
+	cout &lt;&lt; "\t\tSeconds: ";
+	cin &gt;&gt; seconds;
+	cin.ignore();
+	cout &lt;&lt; "\tYoutube link: ";
+	std::string link;
+	getline(cin, link);</span>
+
+<span style = "background-color:#fdd">	return this-&gt;ctrl.addTutorialToRepository(presenter, title, likes, minutes, seconds, link);
+}</span>
+
+int UI::deleteTutorialFromRepo()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n\tEnter the presenter: ";
+	std::string presenter;
+	getline(cin, presenter);
+	cout &lt;&lt; "\tEnter the title: ";
+	std::string title;
+	getline(cin, title);</span>
+
+<span style = "background-color:#fdd">	return this-&gt;ctrl.deleteTutorialFromRepository(presenter, title, 0, 0, 0, "");
+}</span>
+
+int UI::updateTutorialFromRepo()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n\tEnter the presenter: ";
+	std::string presenter;
+	getline(cin, presenter);
+	cout &lt;&lt; "\tEnter the title: ";
+	std::string title;
+	getline(cin, title);
+	if (this-&gt;ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") == -1)
+		return 0;</span>
+	int likes;
+<span style = "background-color:#fdd">	cout &lt;&lt; "\tLikes: ";
+	cin &gt;&gt; likes;
+	cin.ignore();
+	double minutes = 0, seconds = 0;
+	cout &lt;&lt; "\tEnter the duration: " &lt;&lt; endl;
+	cout &lt;&lt; "\t\tMinutes: ";
+	cin &gt;&gt; minutes;
+	cin.ignore();
+	cout &lt;&lt; "\t\tSeconds: ";
+	cin &gt;&gt; seconds;
+	cin.ignore();
+	cout &lt;&lt; "\tYoutube link: ";
+	std::string link;
+	getline(cin, link);</span>
+
+<span style = "background-color:#fdd">	Tutorial t{ presenter,title, likes, Duration{ minutes, seconds }, link };
+	if (this-&gt;ctrl.testExistFromPlayListC(t) != -1)
+		this-&gt;ctrl.updateTutorialToPlayList(presenter, title, likes, minutes, seconds, link);</span>
+
+<span style = "background-color:#fdd">	return this-&gt;ctrl.updateTutorialToRepository(presenter, title, likes, minutes, seconds, link);
+}</span>
+
+void UI::displayAllTutorialsRepo()
+<span style = "background-color:#fdd">{
+	std::vector&lt;Tutorial&gt; v = this-&gt;ctrl.getRepo().getAll();
+	if (v.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "\n\tThere are no tutorials in the playlist.\n" &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+	for (int i = 0; i &lt; v.size(); i++)</span>
+	{
+<span style = "background-color:#fdd">		Tutorial t = v[i];
+		Duration d = t.getDuration();
+		cout &lt;&lt; "  Tutorial by: " &lt;&lt; t.getPresenter() &lt;&lt; endl;
+		cout &lt;&lt; "  Title: " &lt;&lt; t.getTitle() &lt;&lt; endl;
+		cout &lt;&lt; "  Number of likes: " &lt;&lt; t.getLikes() &lt;&lt; endl;
+		cout &lt;&lt; "  Duration: " &lt;&lt; d.getMinutes() &lt;&lt; ":" &lt;&lt; d.getSeconds() &lt;&lt; endl;
+		cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+	}</span>
+
+<span style = "background-color:#fdd">}</span>
+
+
+void UI::displayAllTutorialsPlayList()
+<span style = "background-color:#fdd">{
+	std::vector&lt;Tutorial&gt; v = this-&gt;ctrl.getPlayList().getAll();
+	if (v.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "\n\tThere are no tutorials in the playlist.\n" &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+	for (int i = 0; i &lt; v.size(); i++)</span>
+	{
+<span style = "background-color:#fdd">		Tutorial t = v[i];
+		Duration d = t.getDuration();
+		cout &lt;&lt; "  Tutorial by: " &lt;&lt; t.getPresenter() &lt;&lt; endl;
+		cout &lt;&lt; "  Title: " &lt;&lt; t.getTitle() &lt;&lt; endl;
+		cout &lt;&lt; "  Number of likes: " &lt;&lt; t.getLikes() &lt;&lt; endl;
+		cout &lt;&lt; "  Duration: " &lt;&lt; d.getMinutes() &lt;&lt; ":" &lt;&lt; d.getSeconds() &lt;&lt; endl;
+		cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+	}
+}</span>
+
+
+void UI::tutorialsByPresenter(Tutorial tut)
+<span style = "background-color:#fdd">{
+	std::vector&lt;Tutorial&gt; v = this-&gt;ctrl.getRepo().getAll();
+	if (v.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "\n\tThere are no tutorials in the repository.\n" &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	int newCommand = -1;
+	while (newCommand != 0)</span>
+	{
+<span style = "background-color:#fdd">		std::vector&lt;Tutorial&gt; v = this-&gt;ctrl.getRepo().getAll();
+		for (int i = 0; i &lt; v.size(); i++)</span>
+		{
+<span style = "background-color:#fdd">			if (tut.getPresenter() == v[i].getPresenter())</span>
+			{
+<span style = "background-color:#fdd">				Tutorial t = v[i];
+				Duration d = t.getDuration();
+				cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+				cout &lt;&lt; "  Tutorial by: " &lt;&lt; t.getPresenter() &lt;&lt; endl;
+				cout &lt;&lt; "  Title: " &lt;&lt; t.getTitle() &lt;&lt; endl;
+				cout &lt;&lt; "  Number of likes: " &lt;&lt; t.getLikes() &lt;&lt; endl;
+				cout &lt;&lt; "  Duration: " &lt;&lt; d.getMinutes() &lt;&lt; ":" &lt;&lt; d.getSeconds() &lt;&lt; endl;
+				cout &lt;&lt; "\n\t 1. Like tutorial." &lt;&lt; endl;
+				cout &lt;&lt; "\t 2. Add to watch list." &lt;&lt; endl;
+				cout &lt;&lt; "\t 3. Next." &lt;&lt; endl;
+				cout &lt;&lt; "\t 0. Exit." &lt;&lt; endl;
+				cout &lt;&lt; "\n\t Your command: ";
+				newCommand = 0;
+				cin &gt;&gt; newCommand;
+				cin.ignore();
+				cout &lt;&lt; "\n==========================================================================\n" &lt;&lt; endl;
+				if (newCommand == 0)
+					break;
+				switch (newCommand)</span>
+				{
+				case 1:
+				{
+<span style = "background-color:#fdd">					this-&gt;ctrl.updateTutorialToRepository(v[i].getPresenter(), v[i].getTitle(), v[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), v[i].getSource());
+					this-&gt;ctrl.updateTutorialToPlayList(v[i].getPresenter(), v[i].getTitle(), v[i].getLikes() + 1, d.getMinutes(), d.getSeconds(), v[i].getSource());
+					cout &lt;&lt; "\n\t Tutorial liked !\n" &lt;&lt; endl;
+					break;</span>
+				}
+				case 2:
+				{
+<span style = "background-color:#fdd">					if (this-&gt;ctrl.testExistFromPlayListC(v[i]) == -1)</span>
+					{
+<span style = "background-color:#fdd">						this-&gt;ctrl.addTutorialToPlayList(v[i]);
+						cout &lt;&lt; "\n\t The tutorial has been added to your playlist !\n" &lt;&lt; endl;</span>
+					}
+<span style = "background-color:#fdd">					else
+						cout &lt;&lt; "\n\t\t The tutorial does already exists in the playlist !" &lt;&lt; endl;</span>
+					break;
+				}
+				}
+<span style = "background-color:#fdd">			}
+		}</span>
+
+<span style = "background-color:#fdd">	}
+}</span>
+
+void UI::addTutorialToPlayListUI()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n\t\tEnter the presenter: ";
+	std::string presenter;
+	getline(cin, presenter);
+	cout &lt;&lt; "\t\tEnter the title: ";
+	std::string title;
+	getline(cin, title);
+	Tutorial t = this-&gt;ctrl.getRepo().findByPresenterAndTitle(presenter, title);
+	if (t.getPresenter() == "" &amp;&amp; t.getTitle() == "")</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "\n\tThere are no tutorials avaible with that input.\n" &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	this-&gt;ctrl.addTutorialToPlayList(t);
+	cout &lt;&lt; "\n\tThe tutorial has been added to your playlist !\n";
+}</span>
+
+
+void UI::deleteTutorialToPlayListUI()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n\t\tEnter the presenter: ";
+	std::string presenter;
+	getline(cin, presenter);
+	cout &lt;&lt; "\t\tEnter the title: ";
+	std::string title;
+	getline(cin, title);
+	Tutorial t = this-&gt;ctrl.getPlayList().findByPresenterAndTitle(presenter, title);
+	if (t.getPresenter() == "" &amp;&amp; t.getTitle() == "")</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "\n\tThere are no tutorials avaible with that input.\n" &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	this-&gt;ctrl.deleteTutorialToPlayList(t.getPresenter(), t.getTitle());
+	cout &lt;&lt; "\n\tThe tutorial has been removed from your playlist !\n";
+}</span>
+
+
+void UI::run()
+<span style = "background-color:#dfd">{
+	while (true)</span>
+	{
+<span style = "background-color:#dfd">		UI::printMenu();
+		int command{ 0 };
+		cout &lt;&lt; "\n\t Your command: ";
+		cin &gt;&gt; command;
+		cin.ignore();
+		if (command == 0)
+			break;</span>
+
+<span style = "background-color:#fdd">		if (command == 1)</span>
+		{
+<span style = "background-color:#fdd">			while (true)</span>
+			{
+<span style = "background-color:#fdd">				UI::printAdminMenu();
+				int commandAdminRepo{ 0 };
+				cout &lt;&lt; "\n\t Your command: ";
+				cin &gt;&gt; commandAdminRepo;
+				cin.ignore();
+				if (commandAdminRepo == 0)
+					break;
+				switch (commandAdminRepo)</span>
+				{
+				case 1:
+				{
+<span style = "background-color:#fdd">					int res = this-&gt;addTutorialToRepo();
+					if (res == 1) cout &lt;&lt; "\n\t Tutorial added ! \n" &lt;&lt; endl;
+					else cout &lt;&lt; "\n\t Tutorial does already exists !\n" &lt;&lt; endl;
+					break;</span>
+				}
+				case 2:
+				{
+<span style = "background-color:#fdd">					int res = this-&gt;deleteTutorialFromRepo();
+					if (res == 1) cout &lt;&lt; "\n\t Tutorial deleted ! \n" &lt;&lt; endl;
+					else cout &lt;&lt; "\n\t Tutorial does not exist !\n" &lt;&lt; endl;
+					break;</span>
+				}
+				case 3:
+				{
+<span style = "background-color:#fdd">					int res = this-&gt;updateTutorialFromRepo();
+					if (res == 1) cout &lt;&lt; "\n\t Tutorial updated ! \n" &lt;&lt; endl;
+					else cout &lt;&lt; "\n\t Tutorial does not exist !\n" &lt;&lt; endl;
+					break;</span>
+				}
+				case 4:
+				{
+<span style = "background-color:#fdd">					this-&gt;displayAllTutorialsRepo();
+					break;</span>
+				}
+				case 5:
+<span style = "background-color:#fdd">					cout &lt;&lt; "\n\n \t All instances: " &lt;&lt; Tutorial::allInstances &lt;&lt; endl;
+					cout &lt;&lt; "\t Current instances: " &lt;&lt; Tutorial::currentInstances &lt;&lt; endl;</span>
+				}
+<span style = "background-color:#fdd">			}</span>
+		}
+<span style = "background-color:#fdd">		else</span>
+		{
+<span style = "background-color:#fdd">			while (true)</span>
+			{
+<span style = "background-color:#fdd">				UI::printUserMenu();
+				int commandUserRepo{ 0 };
+				cout &lt;&lt; "\n\t Your command: ";
+				cin &gt;&gt; commandUserRepo;
+				cin.ignore();
+				if (commandUserRepo == 0)
+					break;
+				switch (commandUserRepo)</span>
+				{
+				case 1:
+				{
+<span style = "background-color:#fdd">					this-&gt;displayAllTutorialsRepo();
+					break;</span>
+				}
+				case 2:
+				{
+<span style = "background-color:#fdd">					cout &lt;&lt; "\n\tEnter the presenter: ";
+					std::string presenter;
+					getline(cin, presenter);
+					if (this-&gt;ctrl.testExistFromRepositoryByPresenter(presenter, "", 0, 0, 0, "") == -1)
+						cout &lt;&lt; "\n\t There are no tutorials by " &lt;&lt; presenter &lt;&lt; " !" &lt;&lt; endl;
+					else</span>
+					{
+<span style = "background-color:#fdd">						Tutorial t{ presenter, "", 0, Duration{ 0, 0 }, "" };
+						tutorialsByPresenter(t);
+					}
+					break;
+				}</span>
+				case 3:
+				{
+<span style = "background-color:#fdd">					this-&gt;displayAllTutorialsPlayList();
+					break;</span>
+				}
+				case 4:
+				{
+<span style = "background-color:#fdd">					addTutorialToPlayListUI();
+					break;</span>
+				}
+				case 5:
+				{
+<span style = "background-color:#fdd">					deleteTutorialToPlayListUI();
+					break;</span>
+				}
+				case 6:
+				{
+<span style = "background-color:#fdd">					if (this-&gt;ctrl.getPlayList().isEmpty())</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "\n\t\tNothing to watch, the playlist is empty." &lt;&lt; endl;
+						continue;</span>
+					}
+<span style = "background-color:#fdd">					this-&gt;ctrl.startPlayList();
+					Tutorial t = this-&gt;ctrl.getPlayList().getCurrentTutorial();
+					cout &lt;&lt; "\n\t\tNow watching: " &lt;&lt; t.getPresenter() &lt;&lt; " - " &lt;&lt; t.getTitle() &lt;&lt; endl;
+					break;
+				}</span>
+				case 7:
+				{
+<span style = "background-color:#fdd">					if (this-&gt;ctrl.getPlayList().isEmpty())</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "\n\t\tNothing to watch, the playlist is empty." &lt;&lt; endl;
+						continue;</span>
+					}
+<span style = "background-color:#fdd">					this-&gt;ctrl.nextTutorialPlayList();
+					Tutorial t = this-&gt;ctrl.getPlayList().getCurrentTutorial();
+					cout &lt;&lt; "\n\t\tNow watching: " &lt;&lt; t.getPresenter() &lt;&lt; " - " &lt;&lt; t.getTitle() &lt;&lt; endl;
+					break;
+				}</span>
+				}
+<span style = "background-color:#fdd">			}</span>
+		}
+<span style = "background-color:#fdd">	}</span>
+<span style = "background-color:#dfd">}</span></pre>
+	</body>
+</html>
