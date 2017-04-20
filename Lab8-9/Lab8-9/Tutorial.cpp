@@ -43,12 +43,3 @@ void Tutorial::play()
 {
 	ShellExecuteA(NULL, NULL, "chrome.exe", this->getSource().c_str(), NULL, SW_SHOWMAXIMIZED);
 }
-
-void Tutorial::print_tutorial()
-{
-	Duration d = this->duration;
-	std::cout << "  Tutorial by: " << this->presenter << '\n';
-	std::cout << "  Title: " << this->title << '\n';
-	std::cout << "  Number of likes: " << this->likes << '\n';
-	std::cout << "  Duration: " << d.getMinutes() << ":" << d.getSeconds() << '\n';
-}

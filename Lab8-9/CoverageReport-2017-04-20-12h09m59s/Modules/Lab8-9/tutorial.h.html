@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>tutorial.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include &lt;iostream&gt;
+
+class Duration
+{
+private:
+	double minutes;
+	double seconds;
+public:
+<span style = "background-color:#dfd">	Duration() : minutes(0), seconds(0) {}
+	Duration(double min, double sec) : minutes(min), seconds(sec) {}</span>
+
+<span style = "background-color:#dfd">	double getMinutes() const { return minutes; }
+	double getSeconds() const { return seconds; }</span>
+	void setMinutes(double min) { minutes = min; }
+	void setSeconds(double sec) { seconds = sec; }
+};
+
+class Tutorial
+{
+public:
+	std::string title;
+	std::string presenter;
+	int likes;
+	Duration duration;
+	std::string source;
+	static int allInstances;
+	static int currentInstances;
+
+public:
+	Tutorial();
+
+	Tutorial(const std::string&amp; presenter, const std::string&amp; title, const int likes, const Duration&amp; duration, const std::string&amp; source);
+
+<span style = "background-color:#dfd">	std::string getTitle() const { return title; }
+	std::string getPresenter() const { return presenter; }
+	int getLikes() const { return likes; }
+	Duration getDuration() const { return duration; }
+	std::string getSource() const { return source; }</span>
+
+	//Opens a tutorial in browser.
+	void play();
+
+	//Destructor
+	~Tutorial();
+
+	//Copy of the tutorial t.
+	Tutorial(const Tutorial&amp; t);
+};</pre>
+	</body>
+</html>

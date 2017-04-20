@@ -46,6 +46,4 @@ public:
 
 	//Copy of the tutorial t.
 	Tutorial(const Tutorial& t);
-
-	void print_tutorial();
 };

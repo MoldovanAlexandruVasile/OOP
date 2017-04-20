@@ -1,0 +1,110 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>playlist.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "PlayList.h"
+
+int PlayList::find(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	for (int i = 0; i &lt; this-&gt;tutorials.size(); i++)
+		if (tutorials[i].getPresenter() == t.getPresenter() &amp;&amp; tutorials[i].getTitle() == t.getTitle())
+			return i;</span>
+<span style = "background-color:#fdd">	return -1;</span>
+<span style = "background-color:#dfd">}</span>
+
+PlayList::PlayList()
+<span style = "background-color:#dfd">{
+	this-&gt;current = 0;
+}</span>
+
+void PlayList::addPlayList(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	this-&gt;tutorials.push_back(t);
+}</span>
+
+void PlayList::deletePlayList(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	if (this-&gt;find(t) != -1)</span>
+	{
+<span style = "background-color:#dfd">		this-&gt;tutorials.erase(tutorials.begin() + this-&gt;find(t));</span>
+	}
+<span style = "background-color:#dfd">}</span>
+
+void PlayList::updateTutorialPlayList(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	if (this-&gt;find(t) != -1)</span>
+	{
+<span style = "background-color:#dfd">		this-&gt;deletePlayList(t);
+		this-&gt;addPlayList(t);</span>
+	}
+<span style = "background-color:#dfd">}</span>
+
+Tutorial PlayList::getCurrentTutorial()
+<span style = "background-color:#dfd">{
+	if (this-&gt;current == this-&gt;tutorials.size())
+		this-&gt;current = 0;
+	std::vector&lt;Tutorial&gt; elems = this-&gt;getAll();
+	if (elems.size() != 0)
+		return elems[this-&gt;current];
+	return Tutorial{};
+}</span>
+
+
+Tutorial PlayList::findByPresenterAndTitle(const std::string&amp; presenter, const std::string&amp; title)
+<span style = "background-color:#dfd">{
+	std::vector&lt;Tutorial&gt; v = this-&gt;getAll();
+	if (v.size() == 0)
+		return Tutorial{};</span>
+
+<span style = "background-color:#dfd">	for (int i = 0; i &lt; this-&gt;tutorials.size(); i++)</span>
+	{
+<span style = "background-color:#dfd">		Tutorial t = v[i];
+		if (t.getPresenter() == presenter &amp;&amp; t.getTitle() == title)
+			return t;
+	}</span>
+
+<span style = "background-color:#dfd">	return Tutorial{};
+}</span>
+
+void PlayList::play()
+<span style = "background-color:#dfd">{
+	if (this-&gt;tutorials.size() == 0)
+		return;
+	this-&gt;current = 0;
+	Tutorial currentTutorial = this-&gt;getCurrentTutorial();
+	currentTutorial.play();
+}</span>
+
+void PlayList::next()
+<span style = "background-color:#dfd">{
+	if (this-&gt;tutorials.size() == 0)
+		return;
+	this-&gt;current++;
+	Tutorial currentTutorial = this-&gt;getCurrentTutorial();
+	currentTutorial.play();
+}</span>
+
+bool PlayList::isEmpty()
+<span style = "background-color:#dfd">{
+	return this-&gt;tutorials.size() == 0;
+}</span>
+
+int PlayList::testExistInPlayList(const Tutorial&amp; t)
+<span style = "background-color:#dfd">{
+	int res = this-&gt;find(t);
+	return res;
+}</span>
+
+std::vector&lt;Tutorial&gt; PlayList::getAll()
+<span style = "background-color:#dfd">{
+	return this-&gt;tutorials;
+}</span></pre>
+	</body>
+</html>
