@@ -2,10 +2,12 @@
 
 int PlayList::find(const Tutorial& t)
 {
+	int pos = -1;
 	for (int i = 0; i < this->tutorials.size(); i++)
 		if (tutorials[i].getPresenter() == t.getPresenter() && tutorials[i].getTitle() == t.getTitle())
-			return i;
-	return -1;
+			if (pos == -1)
+				pos = i;
+	return pos;
 }
 
 PlayList::PlayList()

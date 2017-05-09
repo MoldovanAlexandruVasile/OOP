@@ -4,26 +4,49 @@ using namespace std;
 
 int Repository::find(const Tutorial& t)
 {
-	for (int i = 0; i < this->tutorials.size(); i++)
-		if (tutorials[i].getPresenter() == t.getPresenter() && tutorials[i].getTitle() == t.getTitle())
-			return i;
-	return -1;
+	int pos = -1;
+	int pos2 = 0;
+	for (auto it : tutorials)
+	{
+		if (it.getPresenter() == t.getPresenter() && it.getTitle() == t.getTitle())
+			pos = 0;
+		if (pos == -1)
+			pos2++;
+	}
+	if (pos == -1) return -1;
+	return pos2;
 }
 
-Tutorial Repository::findByPresenterAndTitle(const std::string& presenter, const std::string& title)
+int Repository::testExist(const Tutorial& t)
 {
-	std::vector<Tutorial> v = this->getAll();
-	if (v.size() == 0)
-		return Tutorial{};
-
-	for (int i = 0; i < this->tutorials.size(); i++)
+	int pos = -1;
+	int pos2 = 0;
+	for (auto it : tutorials)
 	{
-		Tutorial t = v[i];
-		if (t.getPresenter() == presenter && t.getTitle() == title)
-			return t;
+		if (it.getPresenter() == t.getPresenter())
+			pos = 0;
+		if (pos == -1)
+			pos2++;
 	}
+	if (pos == -1) return -1;
+	return pos2;
+}
 
-	return Tutorial{};
+void Repository::writeToFile()
+{
+	std::ofstream fout("Tutorials.txt");
+	for (auto it : this->tutorials)
+		fout << it;
+	fout.close();
+}
+
+void Repository::readFromFile()
+{
+	std::ifstream fin("Tutorials.txt");
+	Tutorial t;
+	while (fin >> t)
+		this->tutorials.push_back(t);
+	fin.close();
 }
 
 int Repository::addTutorial(const Tutorial& t)
@@ -58,15 +81,23 @@ int Repository::updateTutorial(const Tutorial& t)
 	return 0;
 }
 
+Tutorial Repository::findByPresenterAndTitle(const std::string& presenter, const std::string& title)
+{
+	std::vector<Tutorial> v = this->getAll();
+	if (v.size() == 0)
+		return Tutorial{};
+
+	for (int i = 0; i < this->tutorials.size(); i++)
+	{
+		Tutorial t = v[i];
+		if (t.getPresenter() == presenter && t.getTitle() == title)
+			return t;
+	}
+
+	return Tutorial{};
+}
+
 std::vector<Tutorial> Repository::getAll()
 {
 	return this->tutorials;
-}
-
-int Repository::testExist(const Tutorial& t)
-{
-	for (int i = 0; i < this->tutorials.size(); i++)
-		if (this->tutorials[i].presenter == t.getPresenter())
-			return i;
-	return -1;
 }

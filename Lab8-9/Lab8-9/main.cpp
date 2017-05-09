@@ -12,20 +12,22 @@
 #include "Tutorial.h"
 #include "UI.h"
 #include <Windows.h>
-#include <assert.h>
-#include "Tests.h"
+//#include "Tests.h"
+#include "PlayList.h"
+#include "CSV_Playlist.h"
+#include "HTML_Playlist.h"
 
 using namespace std;
 
 int main()
 {
 	{
-		testRepo();
-		testPlayList();
+		//testRepo();
+		//testPlayList();
 
 		Repository repo{};
 
-		Tutorial t{ "Linux Tutorial", "Learn Vi Editor Basics in 20 minutes", 418 ,Duration{ 23, 54 }, "https://www.youtube.com/watch?v=S24LN5h_pac" };
+		/*Tutorial t{ "Linux Tutorial", "Learn Vi Editor Basics in 20 minutes", 418 ,Duration{ 23, 54 }, "https://www.youtube.com/watch?v=S24LN5h_pac" };
 		repo.addTutorial(t);
 		Tutorial t1{ "337 Media Studios", "HOWTO: Basic Video Editing (Premiere CS5)", 2403, Duration{ 14, 58 }, "https://www.youtube.com/watch?v=iS5DRicnXIY" };
 		repo.addTutorial(t1);
@@ -45,10 +47,40 @@ int main()
 		repo.addTutorial(t8);
 		Tutorial t9{ "thenewboston","Buckys C++ Programming Tutorials - 32 - Arrays", 1799 ,Duration{ 6, 40 }, "https://www.youtube.com/watch?v=1kLw8kZuccQ" };
 		repo.addTutorial(t9);
+		repo.writeToFile();*/
 
-		Controller ctrl{ repo };
-		UI ui{ ctrl };
-		ui.run();
+		repo.readFromFile();
+
+		cout << "How would you like to work?" << endl;
+		cout << "\n \t1. CSV File" << endl;
+		cout << "\t2. HTML." << endl;
+
+		int command{ 0 };
+		cout << "\n\t Your command: ";
+		cin >> command;
+		cin.ignore();
+		
+		if (command == 1)
+		{
+			CSV p;
+
+			Controller ctrl{ repo , &p };
+			UI ui{ ctrl };
+			ui.run();
+
+			p.writeToFilePL();
+		}
+		else if (command == 2)
+		{
+			HTML p;
+
+			Controller ctrl{ repo , &p };
+			UI ui{ ctrl };
+			ui.run();
+
+			p.writeToFilePL();
+		}
+
 	}
 
 	if (_CrtDumpMemoryLeaks())

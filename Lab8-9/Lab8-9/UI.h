@@ -26,4 +26,5 @@ private:
 	void tutorialsByPresenter(Tutorial t);
 	void addTutorialToPlayListUI();
 	void deleteTutorialToPlayListUI();
+	void displayPlayListUI() { return this->ctrl.displayPlayListC(); }
 };

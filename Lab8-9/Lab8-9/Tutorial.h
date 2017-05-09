@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
 
 class Duration
 {
@@ -46,4 +49,7 @@ public:
 
 	//Copy of the tutorial t.
 	Tutorial(const Tutorial& t);
+
+	friend std::istream & operator >> (std::istream & is, Tutorial& t);
+	friend std::ostream & operator << (std::ostream & os, Tutorial& t);
 };

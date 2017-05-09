@@ -23,7 +23,7 @@ int Controller::testExistFromRepository(const std::string& presenter, const std:
 
 int Controller::testExistFromPlayListC(const Tutorial& t)
 {
-	int res = this->playList.testExistInPlayList(t);
+	int res = this->playList->testExistInPlayList(t);
 	return res;
 }
 
@@ -44,26 +44,26 @@ int Controller::updateTutorialToRepository(const std::string& presenter, const s
 void Controller::updateTutorialToPlayList(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
 {
 	Tutorial t{ presenter, title, likes, Duration{ minutes, seconds }, source };
-	this->playList.updateTutorialPlayList(t);
+	this->playList->updateTutorialPlayList(t);
 }
 
 void Controller::addTutorialToPlayList(const Tutorial& t)
 {
-	this->playList.addPlayList(t);
+	this->playList->addPlayList(t);
 }
 
 void Controller::deleteTutorialToPlayList(const std::string& presenter, const std::string& title)
 {
 	Tutorial t = { presenter, title, 0, Duration{ 0, 0 }, "" };
-	this->playList.deletePlayList(t);
+	this->playList->deletePlayList(t);
 }
 
 void Controller::startPlayList()
 {
-	this->playList.play();
+	this->playList->play();
 }
 
 void Controller::nextTutorialPlayList()
 {
-	this->playList.next();
+	this->playList->next();
 }

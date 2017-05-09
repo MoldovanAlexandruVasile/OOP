@@ -136,7 +136,7 @@ void UI::displayAllTutorialsRepo()
 
 void UI::displayAllTutorialsPlayList()
 {
-	std::vector<Tutorial> v = this->ctrl.getPlayList().getAll();
+	std::vector<Tutorial> v = this->ctrl.getPlayList()->getAll();
 	if (v.size() == 0)
 	{
 		cout << "\n\tThere are no tutorials in the playlist.\n" << endl;
@@ -244,7 +244,7 @@ void UI::deleteTutorialToPlayListUI()
 	cout << "\t\tEnter the title: ";
 	std::string title;
 	getline(cin, title);
-	Tutorial t = this->ctrl.getPlayList().findByPresenterAndTitle(presenter, title);
+	Tutorial t = this->ctrl.getPlayList()->findByPresenterAndTitle(presenter, title);
 	if (t.getPresenter() == "" && t.getTitle() == "")
 	{
 		cout << "\n\tThere are no tutorials avaible with that input.\n" << endl;
@@ -346,7 +346,7 @@ void UI::run()
 				}
 				case 3:
 				{
-					this->displayAllTutorialsPlayList();
+					this->displayPlayListUI();
 					break;
 				}
 				case 4:
@@ -361,25 +361,25 @@ void UI::run()
 				}
 				case 6:
 				{
-					if (this->ctrl.getPlayList().isEmpty())
+					if (this->ctrl.getPlayList()->isEmpty())
 					{
 						cout << "\n\t\tNothing to watch, the playlist is empty." << endl;
 						continue;
 					}
 					this->ctrl.startPlayList();
-					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
+					Tutorial t = this->ctrl.getPlayList()->getCurrentTutorial();
 					cout << "\n\t\tNow watching: " << t.getPresenter() << " - " << t.getTitle() << endl;
 					break;
 				}
 				case 7:
 				{
-					if (this->ctrl.getPlayList().isEmpty())
+					if (this->ctrl.getPlayList()->isEmpty())
 					{
 						cout << "\n\t\tNothing to watch, the playlist is empty." << endl;
 						continue;
 					}
 					this->ctrl.nextTutorialPlayList();
-					Tutorial t = this->ctrl.getPlayList().getCurrentTutorial();
+					Tutorial t = this->ctrl.getPlayList()->getCurrentTutorial();
 					cout << "\n\t\tNow watching: " << t.getPresenter() << " - " << t.getTitle() << endl;
 					break;
 				}
@@ -387,4 +387,5 @@ void UI::run()
 			}
 		}
 	}
+	this->ctrl.writeToFileC();
 }

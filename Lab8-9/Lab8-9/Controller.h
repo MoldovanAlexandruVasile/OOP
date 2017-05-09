@@ -6,16 +6,16 @@ class Controller
 {
 private:
 	Repository repo;
-	PlayList playList;
+	PlayList *playList;
 public:
 	//Creates the repository.
-	Controller(const Repository& r) : repo(r) {}
+	Controller(const Repository& r, PlayList *p) : repo(r), playList(p) {}
 
 	//Returns the repository of the tutorials.
 	Repository getRepo() const { return repo; }
 
 	//Returns the repository of the playlists.
-	PlayList getPlayList() const { return playList; }
+	PlayList *getPlayList() const { return playList; }
 
 	/*
 	This function adds a new item to the repository.
@@ -100,5 +100,11 @@ public:
 			pos - If the tutorial exists, his position will be returnes.
 	*/
 	int testExistFromPlayListC(const Tutorial& t);
+
+	void writeToFileC() { this->repo.writeToFile(); }
+	void readFromFileC() { this->repo.readFromFile(); }
+
+	void displayPlayListC() { return this->playList->executeThingsPL(); }
+
 };
 

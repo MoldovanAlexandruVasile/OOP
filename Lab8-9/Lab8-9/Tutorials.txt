@@ -1,0 +1,11 @@
+Linux Tutorial,Learn Vi Editor Basics in 20 minutes,418,23,54,https://www.youtube.com/watch?v=S24LN5h_pac
+337 Media Studios,HOWTO: Basic Video Editing (Premiere CS5),2403,14,58,https://www.youtube.com/watch?v=iS5DRicnXIY
+TechMindBlow,Adobe Premiere Pro CS6 - Basic Editing Introduction Tutorial,6607,16,12,https://www.youtube.com/watch?v=kWTHWOY1usU
+Patrick WashingtonDC,Java Programming - Step by Step tutorial,2228,57,25,https://www.youtube.com/watch?v=3u1fu6f8Hto
+Guru99,What is Linux? Tutorial 1,693,5,29,https://www.youtube.com/watch?v=xRX6ZI_P-LA
+Guru99,Important Linux Commands : Tutorial # 5,537,15,11,https://www.youtube.com/watch?v=_TlK0-5EJ-Y
+Derek Banas,C++ Programming,23616,70,32,https://www.youtube.com/watch?v=Rub-JsjMhWY
+thenewboston,Buckys C++ Programming Tutorials - 30 - Function Overloading,1677,6,21,https://www.youtube.com/watch?v=IAMzWp3kS_k
+thenewboston,Buckys C++ Programming Tutorials - 31 - Recursion,2291,8,18,https://www.youtube.com/watch?v=4agL-MQq05E
+thenewboston,Buckys C++ Programming Tutorials - 32 - Arrays,1799,6,40,https://www.youtube.com/watch?v=1kLw8kZuccQ
+ed,ed,12,12,12,adasa

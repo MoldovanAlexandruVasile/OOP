@@ -1,7 +1,6 @@
 #include "Tutorial.h"
 #include <Windows.h>
 #include <shellapi.h>
-#include <string>
 
 int Tutorial::currentInstances = 0;
 int Tutorial::allInstances = 0;
@@ -42,4 +41,36 @@ Tutorial::Tutorial(const Tutorial& t)
 void Tutorial::play()
 {
 	ShellExecuteA(NULL, NULL, "chrome.exe", this->getSource().c_str(), NULL, SW_SHOWMAXIMIZED);
+}
+
+std::vector<std::string> tokenize(std::string s, char del)
+{
+	std::stringstream ss(s);
+	std::string aux;
+	std::vector<std::string> res;
+	while (getline(ss, aux, del))
+		res.push_back(aux);
+	return res;
+}
+
+std::istream & operator >> (std::istream & is, Tutorial & t)
+{
+	std::string s;
+	getline(is, s);
+	std::vector<std::string> res = tokenize(s, ',');
+	if (res.size() != 6)
+		return is;
+	t.presenter = res[0];
+	t.title = res[1];
+	t.likes = atoi(res[2].c_str());
+	t.duration.setMinutes(atoi(res[3].c_str()));
+	t.duration.setSeconds(atoi(res[4].c_str()));
+	t.source = res[5];
+	return is;
+}
+
+std::ostream & operator<<(std::ostream & os, Tutorial & t)
+{
+	os << t.presenter << "," << t.title << "," << t.likes << "," << t.duration.getMinutes() << "," << t.duration.getSeconds() << "," << t.source << "\n";
+	return os;
 }

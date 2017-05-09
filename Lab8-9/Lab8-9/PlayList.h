@@ -1,12 +1,14 @@
 #pragma once
 #include <vector>
 #include "Tutorial.h"
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 class PlayList
 {
-private:
+protected:
 	std::vector<Tutorial> tutorials;
 	int current;
 
@@ -46,4 +48,7 @@ public:
 	int find(const Tutorial& t);
 
 	std::vector<Tutorial> getAll();
+
+	virtual void writeToFilePL() = 0;
+	virtual void executeThingsPL() = 0;
 };

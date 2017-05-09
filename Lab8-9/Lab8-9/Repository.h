@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "Tutorial.h"
+#include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -53,4 +55,7 @@ public:
 	Tutorial findByPresenterAndTitle(const std::string& presenter, const std::string& title);
 
 	int testExist(const Tutorial& t);
+
+	void writeToFile();
+	void readFromFile();
 };
