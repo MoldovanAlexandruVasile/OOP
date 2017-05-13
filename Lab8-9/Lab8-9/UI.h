@@ -18,9 +18,9 @@ private:
 	static void printAdminMenu();
 	static void printUserMenu();
 
-	int addTutorialToRepo();
-	int deleteTutorialFromRepo();
-	int updateTutorialFromRepo();
+	void addTutorialToRepo();
+	void deleteTutorialFromRepo();
+	void updateTutorialFromRepo();
 	void displayAllTutorialsRepo();
 	void displayAllTutorialsPlayList();
 	void tutorialsByPresenter(Tutorial t);

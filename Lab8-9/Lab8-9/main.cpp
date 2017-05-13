@@ -1,7 +1,7 @@
 /*
 													=================================
 													| Created on: 17.04.2017        |
-													| Edited on: 20.04.2017         |
+													| Edited on: 13.05.2017         |
 													| By: Moldovan Alexandru-Vasile |
 													=================================
 */
@@ -51,9 +51,9 @@ int main()
 
 		repo.readFromFile();
 
-		cout << "How would you like to work?" << endl;
-		cout << "\n \t1. CSV File" << endl;
-		cout << "\t2. HTML." << endl;
+		cout << "\n\tHow would you like to work?" << endl;
+		cout << "\n \t\t1. CSV File" << endl;
+		cout << "\t\t2. HTML." << endl;
 
 		int command{ 0 };
 		cout << "\n\t Your command: ";

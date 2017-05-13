@@ -118,19 +118,23 @@
   <ItemGroup>
     <ClInclude Include="Controller.h" />
     <ClInclude Include="CSV_Playlist.h" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="HTML_Playlist.h" />
     <ClInclude Include="PlayList.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Tutorial.h" />
+    <ClInclude Include="TutorialValidator.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayList.cpp" />
     <ClCompile Include="Repository.cpp" />
     <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="TutorialValidator.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

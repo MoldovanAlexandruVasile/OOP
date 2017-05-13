@@ -1,5 +1,8 @@
 #include "UI.h"
 #include <string>
+#include "TutorialValidator.h"
+#include "Exceptions.h"
+
 using namespace std;
 
 void UI::printMenu()
@@ -37,7 +40,7 @@ void UI::printUserMenu()
 	cout << "\t\t 0. Back." << endl;
 }
 
-int UI::addTutorialToRepo()
+void UI::addTutorialToRepo()
 {
 	cout << "\n\tEnter the presenter: ";
 	std::string presenter;
@@ -45,8 +48,6 @@ int UI::addTutorialToRepo()
 	cout << "\tEnter the title: ";
 	std::string title;
 	getline(cin, title);
-	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") != -1)
-		return 0;
 	int likes;
 	cout << "\tLikes: ";
 	cin >> likes;
@@ -63,10 +64,23 @@ int UI::addTutorialToRepo()
 	std::string link;
 	getline(cin, link);
 
-	return this->ctrl.addTutorialToRepository(presenter, title, likes, minutes, seconds, link);
+	try
+	{
+		this->ctrl.addTutorialToRepository(presenter, title, likes, minutes, seconds, link);
+	}
+	catch (TutorialException& e)
+	{
+		for (auto s : e.getErrors())
+			cout << s;
+	}
+
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
-int UI::deleteTutorialFromRepo()
+void UI::deleteTutorialFromRepo()
 {
 	cout << "\n\tEnter the presenter: ";
 	std::string presenter;
@@ -75,10 +89,17 @@ int UI::deleteTutorialFromRepo()
 	std::string title;
 	getline(cin, title);
 
-	return this->ctrl.deleteTutorialFromRepository(presenter, title, 0, 0, 0, "");
+	try
+	{
+		this->ctrl.deleteTutorialFromRepository(presenter, title, 0, 0, 0, "");
+	}
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
-int UI::updateTutorialFromRepo()
+void UI::updateTutorialFromRepo()
 {
 	cout << "\n\tEnter the presenter: ";
 	std::string presenter;
@@ -86,8 +107,6 @@ int UI::updateTutorialFromRepo()
 	cout << "\tEnter the title: ";
 	std::string title;
 	getline(cin, title);
-	if (this->ctrl.testExistFromRepository(presenter, title, 0, 0, 0, "") == -1)
-		return 0;
 	int likes;
 	cout << "\tLikes: ";
 	cin >> likes;
@@ -103,12 +122,19 @@ int UI::updateTutorialFromRepo()
 	cout << "\tYoutube link: ";
 	std::string link;
 	getline(cin, link);
+
+	try
+	{
+		this->ctrl.updateTutorialToRepository(presenter, title, likes, minutes, seconds, link);
+	}
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 
 	Tutorial t{ presenter,title, likes, Duration{ minutes, seconds }, link };
 	if (this->ctrl.testExistFromPlayListC(t) != -1)
 		this->ctrl.updateTutorialToPlayList(presenter, title, likes, minutes, seconds, link);
-
-	return this->ctrl.updateTutorialToRepository(presenter, title, likes, minutes, seconds, link);
 }
 
 void UI::displayAllTutorialsRepo()
@@ -282,23 +308,17 @@ void UI::run()
 				{
 				case 1:
 				{
-					int res = this->addTutorialToRepo();
-					if (res == 1) cout << "\n\t Tutorial added ! \n" << endl;
-					else cout << "\n\t Tutorial does already exists !\n" << endl;
+					this->addTutorialToRepo();
 					break;
 				}
 				case 2:
 				{
-					int res = this->deleteTutorialFromRepo();
-					if (res == 1) cout << "\n\t Tutorial deleted ! \n" << endl;
-					else cout << "\n\t Tutorial does not exist !\n" << endl;
+					this->deleteTutorialFromRepo();
 					break;
 				}
 				case 3:
 				{
-					int res = this->updateTutorialFromRepo();
-					if (res == 1) cout << "\n\t Tutorial updated ! \n" << endl;
-					else cout << "\n\t Tutorial does not exist !\n" << endl;
+					this->updateTutorialFromRepo();
 					break;
 				}
 				case 4:

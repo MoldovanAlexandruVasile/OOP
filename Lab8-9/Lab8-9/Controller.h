@@ -1,12 +1,14 @@
 #pragma once
 #include "Repository.h"
 #include "PlayList.h"
+#include "TutorialValidator.h"
 
 class Controller
 {
 private:
 	Repository repo;
 	PlayList *playList;
+	TutorialValidator validator;
 public:
 	//Creates the repository.
 	Controller(const Repository& r, PlayList *p) : repo(r), playList(p) {}
@@ -28,7 +30,7 @@ public:
 	OUTPUT: 0 - If the tutorial does already exists in the repository.
 			1 - If the tutorial has been added.
 	*/
-	int addTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
+	void addTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
 
 	/*
 	This function deletes an item to the repository.
@@ -41,7 +43,7 @@ public:
 	OUTPUT: 0 - If the tutorial does not exists in the repository, and nothing was deleted.
 			1 - If the tutorial has been deleted.
 	*/
-	int deleteTutorialFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
+	void deleteTutorialFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
 
 	/*
 	This function updates an item from the repository.
@@ -49,7 +51,7 @@ public:
 	OUTPUT: 0 - If the tutorial does not exist in the repository.
 			pos - If the tutorial exists, his position will be returnes.
 	*/
-	int updateTutorialToRepository(const std::string& artist, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
+	void updateTutorialToRepository(const std::string& artist, const std::string& title, const int likes, double minutes, double seconds, const std::string& source);
 
 
 	/*

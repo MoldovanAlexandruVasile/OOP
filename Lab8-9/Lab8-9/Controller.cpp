@@ -1,17 +1,17 @@
 #include "Controller.h"
+#include "Exceptions.h"
 
-int Controller::addTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
+void Controller::addTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
 {
 	Tutorial t{ presenter, title, likes, Duration{ minutes, seconds }, source };
-	int res = this->repo.addTutorial(t);
-	return res;
+	this->validator.validate(t);
+	this->repo.addTutorial(t);
 }
 
-int Controller::deleteTutorialFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
+void Controller::deleteTutorialFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
 {
 	Tutorial t{ presenter, title, likes, Duration{ minutes, seconds }, source };
-	int res = this->repo.deleteTutorial(t);
-	return res;
+	this->repo.deleteTutorial(t);
 }
 
 int Controller::testExistFromRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
@@ -34,11 +34,10 @@ int Controller::testExistFromRepositoryByPresenter(const std::string& presenter,
 	return res;
 }
 
-int Controller::updateTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
+void Controller::updateTutorialToRepository(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)
 {
 	Tutorial t{ presenter, title, likes, Duration{ minutes, seconds }, source };
-	int res = this->repo.updateTutorial(t);
-	return res;
+	this->repo.updateTutorial(t);
 }
 
 void Controller::updateTutorialToPlayList(const std::string& presenter, const std::string& title, const int likes, double minutes, double seconds, const std::string& source)

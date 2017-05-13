@@ -1,4 +1,5 @@
 #include "Repository.h"
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -35,6 +36,10 @@ int Repository::testExist(const Tutorial& t)
 void Repository::writeToFile()
 {
 	std::ofstream fout("Tutorials.txt");
+
+	if (! fout.is_open())
+		throw FileException("The file could not be opened!");
+
 	for (auto it : this->tutorials)
 		fout << it;
 	fout.close();
@@ -43,58 +48,59 @@ void Repository::writeToFile()
 void Repository::readFromFile()
 {
 	std::ifstream fin("Tutorials.txt");
+
+	if (! fin.is_open())
+		throw FileException("The file could not be opened!");
+
 	Tutorial t;
 	while (fin >> t)
 		this->tutorials.push_back(t);
 	fin.close();
 }
 
-int Repository::addTutorial(const Tutorial& t)
+void Repository::addTutorial(const Tutorial& t)
 {
 	if (this->find(t) == -1)
-	{
 		this->tutorials.push_back(t);
-		return 1;
-	}
-	return 0;
+	else
+		try
+		{
+			throw DuplicateTutorialException();
+		}
+	catch (InexistenTutorialException& e) {}
 }
 
-int Repository::deleteTutorial(const Tutorial& t)
+void Repository::deleteTutorial(const Tutorial& t)
 {
 	int pos = this->find(t);
 	if (pos != -1)
 	{
 		this->tutorials.erase(tutorials.begin() + pos);
-		return 1;
 	}
-	return 0;
+	else
+		throw InexistenTutorialException{};
 }
 
-int Repository::updateTutorial(const Tutorial& t)
+void Repository::updateTutorial(const Tutorial& t)
 {
 	if (this->find(t) != -1)
 	{
 		this->deleteTutorial(t);
 		this->addTutorial(t);
-		return 1;
 	}
-	return 0;
+	else
+		throw InexistenTutorialException{};
 }
 
 Tutorial Repository::findByPresenterAndTitle(const std::string& presenter, const std::string& title)
 {
-	std::vector<Tutorial> v = this->getAll();
-	if (v.size() == 0)
-		return Tutorial{};
-
-	for (int i = 0; i < this->tutorials.size(); i++)
+	for (auto t : this->tutorials)
 	{
-		Tutorial t = v[i];
 		if (t.getPresenter() == presenter && t.getTitle() == title)
 			return t;
 	}
 
-	return Tutorial{};
+	throw InexistenTutorialException{};
 }
 
 std::vector<Tutorial> Repository::getAll()
