@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QLabel>
+#include <QRadioButton>
 
 class PlaylistQt : public QWidget
 {
@@ -22,6 +23,7 @@ private:
 	std::vector<Tutorial> currentTutorialsInRepoList;
 	std::vector<Tutorial> currentTutorialsInPlayList;
 
+	QListWidget* playList;
 	QListWidget* repoList;
 	QLineEdit* titleEdit;
 	QLineEdit* presenterEdit;
@@ -36,19 +38,21 @@ private:
 	QPushButton* moveAllTutorialsButton;
 	QPushButton* watchButton;
 	QPushButton* deletePlayListButton;
-
-	QListWidget* playList;
+	QRadioButton* sortButton;
+	QRadioButton* shuffleButton;
 
 	void initGUI();
 	void populateRepoList();
 	void populatePlaylist();
 	int getRepoListSelectedIndex();
-
+	int getPlayListSelectedIndex();
 	void connectSignalsAndSlots();
 
-	private slots:
+
+private slots:
 	// When an item in the list is clicked, the text boxes get filled with the item's information
 	void listItemChanged();
+	void listItemChangedPlayList();
 
 	void addNewTutorial();
 	void updateTutorial();
@@ -60,6 +64,9 @@ private:
 	void moveTutorialToPlaylist();
 	void moveAllTutorials();
 	void playTutorial();
+	void sortedButtonHandler(bool checked);
+	void shuffledButtonHandler(bool checked);
+
 	std::vector<std::string> tokenize(const string& str, char delimiter)
 	{
 		vector <string> result;

@@ -48,6 +48,12 @@ public:
 	Duration getDuration() const { return duration; }
 	std::string getSource() const { return source; }
 
+	void setPresenter(const std::string& p) { presenter = p; }
+	void setTitle(const std::string& t) { title = t; }
+	void setLikes(int l) { likes = l; }
+	void setDuration(Duration d) { duration = d; }
+	void setSource(const std::string& s) { source = s; }
+
 	//Opens a tutorial in browser.
 	void play();
 

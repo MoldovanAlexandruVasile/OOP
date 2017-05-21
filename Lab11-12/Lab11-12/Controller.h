@@ -126,6 +126,5 @@ public:
 
 		return tutorialsByArtist;
 	}
-
 };
 
