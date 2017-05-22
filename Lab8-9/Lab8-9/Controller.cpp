@@ -48,6 +48,7 @@ void Controller::updateTutorialToPlayList(const std::string& presenter, const st
 
 void Controller::addTutorialToPlayList(const Tutorial& t)
 {
+	this->validator.validate(t);
 	this->playList->addPlayList(t);
 }
 

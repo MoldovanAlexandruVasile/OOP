@@ -257,8 +257,20 @@ void UI::addTutorialToPlayListUI()
 		cout << "\n\tThere are no tutorials avaible with that input.\n" << endl;
 		return;
 	}
-	this->ctrl.addTutorialToPlayList(t);
-	cout << "\n\tThe tutorial has been added to your playlist !\n";
+	try
+	{
+		this->ctrl.addTutorialToPlayList(t);
+	}
+	catch (TutorialException& e)
+	{
+		for (auto s : e.getErrors())
+			cout << s;
+	}
+
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 
@@ -276,8 +288,14 @@ void UI::deleteTutorialToPlayListUI()
 		cout << "\n\tThere are no tutorials avaible with that input.\n" << endl;
 		return;
 	}
-	this->ctrl.deleteTutorialToPlayList(t.getPresenter(), t.getTitle());
-	cout << "\n\tThe tutorial has been removed from your playlist !\n";
+	try
+	{
+		this->ctrl.deleteTutorialToPlayList(t.getPresenter(), t.getTitle());
+	}
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 
@@ -366,7 +384,7 @@ void UI::run()
 				}
 				case 3:
 				{
-					this->displayPlayListUI();
+					this->ctrl.displayPlayListC();
 					break;
 				}
 				case 4:

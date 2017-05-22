@@ -17,17 +17,17 @@ RepositoryException::RepositoryException(const std::string & msg) : message{ msg
 {
 }
 
-const char * RepositoryException::what()
+const char *RepositoryException::what()
 {
 	return this->message.c_str();
 }
 
-const char * DuplicateTutorialException::what()
+const char *DuplicateTutorialException::what()
 {
 	return "\n\tThere is another tutorial with the same presenter and title !\n";
 }
 
-const char * InexistenTutorialException::what()
+const char *InexistenTutorialException::what()
 {
 	return "\n\tThere are no tutorials with the given presenter and title !\n";
 }

@@ -1,4 +1,5 @@
 #include "PlayList.h"
+#include "Exceptions.h"
 
 int PlayList::find(const Tutorial& t)
 {
@@ -17,7 +18,14 @@ PlayList::PlayList()
 
 void PlayList::addPlayList(const Tutorial& t)
 {
-	this->tutorials.push_back(t);
+	if (this->find(t) == -1)
+		this->tutorials.push_back(t);
+	else
+		try
+	{
+		throw DuplicateTutorialException();
+	}
+	catch (InexistenTutorialException& e) {}
 }
 
 void PlayList::deletePlayList(const Tutorial& t)
@@ -26,6 +34,8 @@ void PlayList::deletePlayList(const Tutorial& t)
 	{
 		this->tutorials.erase(tutorials.begin() + this->find(t));
 	}
+	else
+		throw InexistenTutorialException{};
 }
 
 void PlayList::updateTutorialPlayList(const Tutorial& t)
@@ -50,18 +60,13 @@ Tutorial PlayList::getCurrentTutorial()
 
 Tutorial PlayList::findByPresenterAndTitle(const std::string& presenter, const std::string& title)
 {
-	std::vector<Tutorial> v = this->getAll();
-	if (v.size() == 0)
-		return Tutorial{};
-
-	for (int i = 0; i < this->tutorials.size(); i++)
+	for (auto t : this->tutorials)
 	{
-		Tutorial t = v[i];
 		if (t.getPresenter() == presenter && t.getTitle() == title)
 			return t;
 	}
 
-	return Tutorial{};
+	throw InexistenTutorialException{};
 }
 
 void PlayList::play()
