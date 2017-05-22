@@ -38,6 +38,8 @@ private:
 	QPushButton* moveAllTutorialsButton;
 	QPushButton* watchButton;
 	QPushButton* deletePlayListButton;
+	QPushButton* likeButton;
+	QPushButton* CSVButton;
 	QRadioButton* sortButton;
 	QRadioButton* shuffleButton;
 
@@ -66,6 +68,8 @@ private slots:
 	void playTutorial();
 	void sortedButtonHandler(bool checked);
 	void shuffledButtonHandler(bool checked);
+	void CSVOpenButtonHandler();
+	void likeButtonHandler();
 
 	std::vector<std::string> tokenize(const string& str, char delimiter)
 	{

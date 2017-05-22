@@ -95,8 +95,12 @@ void PlaylistQt::initGUI()
 	QHBoxLayout* playlistButtonsLayout = new QHBoxLayout{ playlistButtonsWidget };
 	this->watchButton = new QPushButton(" Watch ");
 	this->deletePlayListButton = new QPushButton(" Delete from playlist ");
+	this->likeButton = new QPushButton(" Like tutorial ");
+	this->CSVButton = new QPushButton(" Open in CSV ");
 	playlistButtonsLayout->addWidget(deletePlayListButton);
 	playlistButtonsLayout->addWidget(watchButton);
+	playlistButtonsLayout->addWidget(likeButton);
+	playlistButtonsLayout->addWidget(CSVButton);
 
 	// add everything to the right layout
 	rightSide->addWidget(new QLabel{ "PlayList" });
@@ -132,6 +136,44 @@ void PlaylistQt::connectSignalsAndSlots()
 
 	QObject::connect(this->sortButton, SIGNAL(toggled(bool)), this, SLOT(sortedButtonHandler(bool)));
 	QObject::connect(this->shuffleButton, SIGNAL(toggled(bool)), this, SLOT(shuffledButtonHandler(bool)));
+	QObject::connect(this->likeButton, SIGNAL(clicked()), this, SLOT(likeButtonHandler()));
+	QObject::connect(this->CSVButton, SIGNAL(clicked()), this, SLOT(CSVOpenButtonHandler()));
+}
+
+void PlaylistQt::CSVOpenButtonHandler()
+{
+	this->ctrl.displayPlayListC();
+}
+
+void PlaylistQt::likeButtonHandler()
+{
+	int idx = this->getPlayListSelectedIndex();
+	if (idx == -1)
+		return;
+	Tutorial t = this->ctrl.getPlayList()->getAll()[idx];
+	t.setLikes(t.getLikes() + 1);
+	try
+	{
+		this->ctrl.updateTutorialToPlayList(t.getPresenter(), t.getTitle(), t.getLikes(), t.getDuration().getMinutes(), t.getDuration().getSeconds(), t.getSource());
+		// refresh the list
+		this->currentTutorialsInPlayList = this->ctrl.getPlayList()->getAll();
+		this->populatePlaylist();
+		this->ctrl.updateTutorialToRepository(t.getPresenter(), t.getTitle(), t.getLikes(), t.getDuration().getMinutes(), t.getDuration().getSeconds(), t.getSource());
+		// refresh the list
+		this->currentTutorialsInRepoList = this->ctrl.getRepo().getAll();
+		this->populateRepoList();
+	}
+
+	catch (TutorialException& e)
+	{
+		QMessageBox messageBox;
+		messageBox.critical(0, "Error", QString::fromStdString(e.getErrorsAsString()));
+	}
+	catch (DuplicateTutorialException& e)
+	{
+		QMessageBox messageBox;
+		messageBox.critical(0, "Error", e.what());
+	}
 }
 
 void PlaylistQt::populateRepoList()
